@@ -16,9 +16,8 @@ const Hero = () => {
   }
 
   const downloadCV = () => {
-    // Create a link to download CV
     const link = document.createElement('a')
-    link.href = '/' // You can replace this with actual CV file
+    link.href = ''
     link.download = ''
     link.click()
   }
