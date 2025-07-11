@@ -72,7 +72,7 @@ const Hero = () => {
               </h1>
               
               <p className="text-base md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                <strong>ASP.NET developer</strong> skilled in <strong>React</strong> and <strong>Python</strong>, with a focus on <strong>project management</strong>. I build scalable solutions 
+                <strong>ASP.NET</strong> developer skilled in <strong>React</strong> and <strong>Python</strong>, with a focus on <strong>project management</strong>. I build scalable solutions 
                 while combining technical expertise, team values and leadership to drive goal based delivery.
               </p>
             </div>
@@ -124,9 +124,11 @@ const Hero = () => {
                 
                 {/* Enhanced Floating Badge */}
                 <div className="absolute -bottom-6 md:-bottom-8 left-1/2 transform -translate-x-1/2 card-trusted px-4 py-2 md:px-8 md:py-4 rounded-full animate-float">
-                  <div className="flex items-center space-x-2 md:space-x-3">
-                    <div className="w-3 h-3 md:w-4 md:h-4 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-pulse" />
-                    <span className="text-xs md:text-sm font-semibold text-white">Available for hire</span>
+                  <div className="flex items-center space-x-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 px-3 py-1 rounded-full shadow-md animate-fade-in-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0c-3.866 0-7 1.79-7 4v2h14v-2c0-2.21-3.134-4-7-4z" />
+                    </svg>
+                    <span className="text-xs md:text-sm text-blue-200 font-medium">Dhaka, Bangladesh</span>
                   </div>
                 </div>
               </div>

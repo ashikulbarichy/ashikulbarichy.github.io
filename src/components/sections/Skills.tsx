@@ -240,42 +240,6 @@ const Skills = () => {
             );
           })}
         </div>
-
-        {/* Additional Info Section */}
-        <div className="mt-12 md:mt-16 text-center">
-          <div className="glass-effect p-6 md:p-8 rounded-2xl max-w-3xl mx-auto">
-            <div className="space-y-4">
-              <div className="flex justify-center">
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <Code2 className="h-6 w-6 md:h-7 md:w-7 text-primary" />
-                </div>
-              </div>
-              
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                Continuous Learning & Growth
-              </h3>
-              
-              <p className="text-sm md:text-base text-gray-300 leading-relaxed max-w-2xl mx-auto">
-                Technology evolves rapidly, and I'm committed to staying at the forefront of innovation. 
-                I regularly update my skills, explore new technologies like <strong>React 19</strong>,
-                <strong>.NET 9</strong>, proper <strong>Agile Methodology</strong> and adapt to industry best practices 
-                to deliver cutting-edge solutions that drive business success.
-              </p>
-              
-              <div className="flex flex-wrap justify-center gap-3 mt-6">
-                <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs rounded-full border border-white/10">
-                  Continous Learning
-                </span>
-                <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs rounded-full border border-white/10">
-                  Industry Practices
-                </span>
-                <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs rounded-full border border-white/10">
-                  Goal Oriented
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
