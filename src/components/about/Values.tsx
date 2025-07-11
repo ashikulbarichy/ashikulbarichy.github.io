@@ -1,36 +1,36 @@
-import { Heart, Target, Lightbulb, Users, Zap, Shield } from 'lucide-react';
+import { Heart, Target, Users, Zap, Shield } from 'lucide-react';
 
 const Values = () => {
   const values = [
     {
       icon: Heart,
       title: 'Passion-Driven',
-      description: 'I believe that genuine passion for technology and problem-solving is the foundation of exceptional work.'
+      description: 'I believe that genuine passion or interest in the field is the foundation of exceptional work.'
     },
     {
       icon: Target,
-      title: 'Results-Focused',
-      description: 'Every project I undertake is driven by clear objectives and measurable outcomes that deliver real value.'
+      title: 'Outcome-Oriented',
+      description: 'Every project I work on is driven by clear objectives and measurable outcomes that deliver real value to the world.'
     },
     {
-      icon: Lightbulb,
-      title: 'Innovation First',
-      description: 'I constantly seek creative solutions and embrace new technologies to stay ahead of the curve.'
+      icon: Users,
+      title: 'Team Cohesion',
+      description: 'Fostering collaboration and unity to achieve business goals efficiently.'
     },
     {
       icon: Users,
       title: 'Team Collaboration',
-      description: 'Great products are built by great teams. I foster collaborative environments where everyone can thrive.'
+      description: 'Great products are built by great teams. I ensure to keep team on same page and aligned with the project goals.'
     },
     {
       icon: Zap,
       title: 'Continuous Learning',
-      description: 'Technology evolves rapidly, and I\'m committed to continuous learning and professional growth.'
+      description: 'Learning is a never ending process. I am always looking for new ways to improve my skills and knowledge alongside my team.'
     },
     {
       icon: Shield,
       title: 'Quality & Reliability',
-      description: 'I never compromise on code quality, testing, and reliability. Every solution is built to last.'
+      description: 'I never compromise on code quality, security, and testing. Every solution is built to last.'
     }
   ];
 
@@ -75,11 +75,11 @@ const Values = () => {
             <p className="text-lg text-gray-300 leading-relaxed">
               "Technology should serve people, not the other way around. My goal is to create 
               solutions that are not only technically excellent but also genuinely useful and 
-              accessible to everyone. Great software is built by great teams, and great teams 
-              are built on trust, communication, and shared vision."
+              accessible to everyone while meeting the business needs. Great software is built 
+              by great teams, and great teams are built on trust, communication, and shared vision."
             </p>
             <div className="mt-6">
-              <span className="text-primary font-semibold">— Alex Johnson</span>
+              <span className="text-primary font-semibold">— Ashikul Bari Chowdhury</span>
             </div>
           </div>
         </div>

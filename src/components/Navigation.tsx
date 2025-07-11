@@ -24,10 +24,25 @@ const Navigation = () => {
 
   const isActive = (href: string) => location.pathname === href
 
-  const handleGetInTouch = () => {
-    window.location.href = 'mailto:ashikul.chowdhury@proton.me'
-    setIsOpen(false)
-  }
+  // Add scroll to top or redirect logic for logo
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // else, let Link handle navigation
+    setIsOpen(false);
+  };
+
+  // Add scroll to top or redirect logic for nav links
+  const handleNavLinkClick = (e: React.MouseEvent, href: string) => {
+    if (location.pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsOpen(false);
+    }
+    // else, let Link handle navigation
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -36,7 +51,7 @@ const Navigation = () => {
       <div className="container-width section-padding">
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-2 group" onClick={handleLogoClick}>
             <div className="p-1.5 md:p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
               <Code2 className="h-5 w-5 md:h-6 md:w-6 text-primary" />
             </div>
@@ -50,6 +65,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 to={item.href}
+                onClick={(e) => handleNavLinkClick(e, item.href)}
                 className={`relative px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
                   isActive(item.href) ? 'text-primary' : 'text-gray-300'
                 }`}
@@ -60,12 +76,15 @@ const Navigation = () => {
                 )}
               </Link>
             ))}
-            <button
-              onClick={handleGetInTouch}
-              className="btn-primary-small btn-interactive"
+            <a
+              href="mailto:ashikul.chowdhury@proton.me"
+              className="btn-primary-small"
+              onClick={() => setIsOpen(false)}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span>Get In Touch</span>
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -86,7 +105,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavLinkClick(e, item.href)}
                   className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors hover:bg-white/10 ${
                     isActive(item.href) ? 'text-primary bg-white/5' : 'text-gray-300'
                   }`}
@@ -94,12 +113,15 @@ const Navigation = () => {
                   {item.label}
                 </Link>
               ))}
-              <button
-                onClick={handleGetInTouch}
-                className="btn-primary-small btn-interactive mt-4 text-center"
+              <a
+                href="mailto:ashikul.chowdhury@proton.me"
+                className="btn-primary-small mt-4 text-center"
+                onClick={() => setIsOpen(false)}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span>Get In Touch</span>
-              </button>
+              </a>
             </div>
           </div>
         )}

@@ -9,8 +9,8 @@ const ProjectsHero = () => {
   }, []);
 
   const stats = [
-    { icon: Code, value: '50+', label: 'Projects Completed' },
-    { icon: Layers, value: '15', label: 'Technologies Used' }
+    { icon: Code, value: '3', label: 'Projects Completed' },
+    { icon: Layers, value: '10', label: 'Technologies Used' }
   ];
 
   return (
@@ -38,7 +38,7 @@ const ProjectsHero = () => {
             
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
               From concept to deployment, explore a collection of projects that showcase 
-              my expertise in full-stack development, project management, and creative 
+              my expertise in web application development, project management, and creative 
               problem-solving across various industries and technologies.
             </p>
           </div>

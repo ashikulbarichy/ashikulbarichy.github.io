@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Award, Users, Calendar, Coffee } from 'lucide-react';
+import { Users, Calendar, Coffee, BrainCircuit } from 'lucide-react';
 
 const AboutHero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,10 +9,10 @@ const AboutHero = () => {
   }, []);
 
   const stats = [
-    { icon: Calendar, value: '5+', label: 'Years Experience' },
-    { icon: Users, value: '50+', label: 'Projects Delivered' },
-    { icon: Award, value: '15+', label: 'Team Members Led' },
-    { icon: Coffee, value: '1000+', label: 'Cups of Coffee' }
+    { icon: Calendar, value: '1+', label: 'Year Coding' },
+    { icon: Users, value: '3', label: 'Team Projects' },
+    { icon: BrainCircuit, value: '1', label: 'Research Ongoing' },
+    { icon: Coffee, value: '50+', label: 'GitHub Commits' }
   ];
 
   return (
@@ -33,17 +33,17 @@ const AboutHero = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="heading-gradient">Passionate Developer.</span>
+              <span className="heading-gradient">Developer.</span>
               <br />
-              <span className="text-white">Strategic Leader.</span>
+              <span className="text-white">Technical Strategist.</span>
               <br />
-              <span className="text-primary">Problem Solver.</span>
+              <span className="text-primary">Solution Architect.</span>
             </h1>
             
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              I'm Alex Johnson, a full-stack developer and project manager who thrives at the 
-              intersection of technology and leadership. My mission is to create exceptional 
-              digital experiences while building and leading high-performing teams.
+            I'm Ashikul Bari, an aspiring ASP.NET developer and project manager with a passion for 
+            combining technology and teamwork. I'm eager to contribute to impactful digital solutions 
+            while learning to lead and grow with dynamic teams.
             </p>
           </div>
 

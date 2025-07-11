@@ -5,49 +5,49 @@ const PassionStory = () => {
     {
       icon: Heart,
       title: 'The Spark',
-      year: '2018',
-      story: 'It all began with a simple "Hello World" that changed everything. The moment I saw those two words appear on my screen, I knew I had found my calling.',
-      emotion: 'Wonder',
+      year: '2019-2020',
+      story: 'My journey began with learning basic C programming during my high school days my first "Hello World" and feeling the interest of making a computer respond to my code. The interest grew during my first semester of university.',
+      emotion: 'Curiosity',
       color: 'from-red-500 to-pink-500'
     },
     {
       icon: Code,
-      title: 'The Deep Dive',
-      year: '2019',
-      story: 'Late nights turned into early mornings as I devoured every tutorial, documentation, and coding challenge I could find. Sleep became optional, learning became essential.',
-      emotion: 'Obsession',
+      title: 'The Learning Curve',
+      year: '2021',
+      story: 'During my second year of university, I got introduced to object oriented programming and data structure and algorithms. Initially, it was challenging but I started to understand the theories and importance of it.',
+      emotion: 'Perseverance',
       color: 'from-blue-500 to-indigo-500'
     },
     {
       icon: Lightbulb,
-      title: 'The Breakthrough',
-      year: '2020',
-      story: 'My first real project went live. Seeing users interact with something I built from scratch was pure magic. I realized I wasn\'t just writing code - I was solving real problems.',
-      emotion: 'Eureka',
+      title: 'The First Project',
+      year: '2024',
+      story: 'Building my first real app was both challenging and rewarding. I was working on my junior capstone project and worked on a web application using ASP.NET Core and PostgreSQL Server.',
+      emotion: 'Pride',
       color: 'from-yellow-500 to-orange-500'
     },
     {
       icon: Rocket,
-      title: 'The Launch',
-      year: '2021',
-      story: 'Leading my first team taught me that great software isn\'t just about perfect code - it\'s about perfect collaboration. I discovered my love for mentoring and guiding others.',
-      emotion: 'Leadership',
+      title: 'The Collaboration',
+      year: '2025',
+      story: 'It was in my senior capstone course. I was Working with advanced project with my groupmates in university taught me the value of communication and teamwork in software development.',
+      emotion: 'Growth',
       color: 'from-green-500 to-teal-500'
     },
     {
       icon: Star,
       title: 'The Recognition',
-      year: '2022',
-      story: 'When clients started specifically requesting me for their projects, I knew I had found my unique voice in the tech world. Each success fueled my hunger for the next challenge.',
-      emotion: 'Validation',
+      year: '2025',
+      story: 'Receiving positive feedback from supervisor and peers motivated me to keep learning and improving.',
+      emotion: 'Encouragement',
       color: 'from-purple-500 to-pink-500'
     },
     {
       icon: Zap,
-      title: 'The Vision',
-      year: '2024',
-      story: 'Today, every line of code I write carries the weight of dreams - mine and those of the people I serve. Technology isn\'t just my profession; it\'s my canvas for creating the future.',
-      emotion: 'Purpose',
+      title: 'The Aspiration',
+      year: '2025',
+      story: 'As I look ahead, I am eager to take on new challenges, contribute to real-world projects, and grow as a developer, a person and a leader.',
+      emotion: 'Ambition',
       color: 'from-indigo-500 to-blue-500'
     }
   ];
@@ -72,9 +72,7 @@ const PassionStory = () => {
             The Journey of a Thousand Lines
           </h2>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Every developer has a story. Mine isn't just about learning to code - it's about discovering 
-            that technology can be poetry, that algorithms can be art, and that every bug fixed is a 
-            small victory in the grand symphony of creation.
+            Every person starts somewhere. My journey is about embracing challenges, learning from mistakes, and celebrating every small wins. I believe that with passion and perseverance, even the smallest steps can lead to big achievements.
           </p>
         </div>
 
@@ -94,7 +92,7 @@ const PassionStory = () => {
                     <div className="hidden lg:block absolute top-8 left-full w-8 h-0.5 bg-gradient-to-r from-white/20 to-transparent z-0" />
                   )}
                   
-                  <div className="glass-effect p-6 rounded-2xl hover-lift relative z-10 h-full">
+                  <div className="glass-effect p-6 rounded-2xl hover-lift relative z-10 h-full flex flex-col">
                     {/* Icon and Year */}
                     <div className="flex items-center justify-between mb-4">
                       <div className={`p-3 rounded-xl bg-gradient-to-br ${milestone.color} bg-opacity-20 border border-white/10 group-hover:scale-110 transition-transform duration-300`}>
@@ -119,7 +117,7 @@ const PassionStory = () => {
                     </p>
 
                     {/* Decorative Element */}
-                    <div className="mt-4 flex justify-center">
+                    <div className="mt-8 flex justify-center">
                       <div className={`w-16 h-0.5 rounded-full bg-gradient-to-r ${milestone.color} opacity-60 group-hover:opacity-100 transition-opacity`} />
                     </div>
                   </div>
@@ -149,11 +147,7 @@ const PassionStory = () => {
               </h3>
               
               <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                "I don't just write code - I craft digital experiences that matter. Every function I write, 
-                every component I build, every team I lead is driven by one simple belief: 
-                <span className="text-pink-300 font-semibold"> technology should make life better, not just easier</span>. 
-                When I see a user smile because of something I built, when a team grows stronger under my guidance, 
-                when a complex problem becomes an elegant solution - that's when I know I\'m exactly where I belong."
+                "For me, coding is about curiosity and growth. Each project is a new opportunity to learn, solve problems, and make a difference. As a fresher, I am excited to keep exploring, building, and contributing to the world of technology."
               </p>
               
               <div className="flex flex-wrap justify-center gap-3 mt-6">
@@ -161,7 +155,7 @@ const PassionStory = () => {
                   💝 Passion-Driven
                 </span>
                 <span className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-blue-300 text-sm rounded-full border border-blue-400/30">
-                  🚀 Innovation-Focused
+                  🚀 BusinessOriented
                 </span>
                 <span className="px-4 py-2 bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 text-sm rounded-full border border-green-400/30">
                   🤝 People-Centered

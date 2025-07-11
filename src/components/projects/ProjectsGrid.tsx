@@ -111,7 +111,7 @@ const ProjectsGrid = ({ selectedCategory = 'all' }: ProjectsGridProps) => {
                       </div>
                       <div className="flex items-center space-x-1">
                         <Users className="h-3 w-3" />
-                        <span>{project.team}</span>
+                        <span>{project.type === 'application' ? 'Application' : 'Case Study'}</span>
                       </div>
                     </div>
                     <span className="text-primary font-medium">{project.duration}</span>
@@ -122,7 +122,6 @@ const ProjectsGrid = ({ selectedCategory = 'all' }: ProjectsGridProps) => {
               <div className="p-6 space-y-5">
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{project.description}</p>
                 </div>
 
                 {/* Complete Tech Stack */}

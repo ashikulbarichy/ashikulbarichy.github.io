@@ -1,23 +1,23 @@
 import { Link } from 'react-router-dom'
-import { Code2, Github, Linkedin, Twitter, Mail } from 'lucide-react'
+import { Code2, Github, Linkedin, Twitter, Mail, Rss } from 'lucide-react'
 
 const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com/ashikulbari',
+      href: 'https://github.com/ashikulbarichy',
       label: 'GitHub',
       color: 'hover:text-gray-300'
     },
     {
       icon: Linkedin,
-      href: 'https://linkedin.com/in/ashikulbari',
+      href: 'https://linkedin.com/in/ashikulbarichy',
       label: 'LinkedIn',
       color: 'hover:text-blue-400'
     },
     {
       icon: Twitter,
-      href: 'https://twitter.com/ashikulbari',
+      href: 'https://twitter.com/brownkid_sami',
       label: 'Twitter',
       color: 'hover:text-sky-400'
     },
@@ -26,8 +26,16 @@ const Footer = () => {
       href: 'mailto:ashikul.chowdhury@proton.me',
       label: 'Email',
       color: 'hover:text-green-400'
-    }
+    },
+    {
+      icon: Rss,
+      href: 'https://ashikulbarichowdhury.medium.com/',
+      label: 'Blog',
+      color: 'hover:text-green-400'
+    }  
   ]
+
+  
 
   return (
     <footer className="bg-black/20 border-t border-white/10">
@@ -42,7 +50,7 @@ const Footer = () => {
               <span className="text-xl font-bold heading-gradient">Ashikul Bari Chowdhury</span>
             </div>
             <p className="text-gray-400 max-w-md">
-              Full-stack developer and project manager passionate about creating 
+              ASP.NET developer and project manager passionate about creating 
               exceptional digital experiences and leading high-performing teams.
             </p>
           </div>

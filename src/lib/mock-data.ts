@@ -15,6 +15,7 @@ export interface Project {
   demoUrl: string;
   createdAt: string;
   updatedAt: string;
+  type: 'application' | 'case-study'; // New property for project type
 }
 
 export interface ContactMessage {
@@ -41,7 +42,7 @@ export interface Testimonial {
 export interface Skill {
   id: number;
   name: string;
-  category: 'development' | 'management' | 'tools';
+  category: 'development' | 'management' | 'tools' | 'research';
   level: number; // 1-100
   description: string;
   icon: string;
@@ -51,27 +52,25 @@ export interface Skill {
 export const mockProjects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    slug: 'e-commerce-platform',
+    title: 'AI Powered Intellegent evaluation and feedback system',
+    slug: 'edTech solution',
     description: 'A comprehensive e-commerce solution with advanced analytics, inventory management, and multi-vendor support. Built for scalability and performance with modern technologies.',
-    image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600',
-    tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe', 'Redis', 'Docker'],
-    category: 'E-Commerce',
-    date: 'Nov 2024',
-    team: '5 developers',
-    duration: '4 months',
+    image: 'https://api.ajackus.com/wp-content/uploads/2022/01/AI-Powered-technologies-transformation-2022.png',
+    tags: ['React', 'TypeScript', 'SQLite', 'ASP.NET', 'EF Core', 'Docker'],
+    category: 'EdTech',
+    date: 'July 2025',
+    team: '2 developers',
+    duration: '3 months',
     features: [
-      'Multi-vendor marketplace functionality',
-      'Advanced analytics and reporting',
-      'Secure payment processing with Stripe',
-      'Real-time inventory management',
-      'Customer review and rating system',
-      'Mobile-responsive design'
+      'Auto Evaluation system with AI',
+      'Question generation system using AI',
+      'Student & Course performance tracking and analytics',
     ],
     githubUrl: 'https://github.com/ashikul/ecommerce-platform',
     demoUrl: 'https://ecommerce-demo.ashikulbari.dev',
     createdAt: '2024-07-01T00:00:00Z',
-    updatedAt: '2024-11-01T00:00:00Z'
+    updatedAt: '2024-11-01T00:00:00Z',
+    type: 'application'
   },
   {
     id: 2,
@@ -95,7 +94,8 @@ export const mockProjects: Project[] = [
     githubUrl: 'https://github.com/ashikul/healthcare-system',
     demoUrl: 'https://healthcare-demo.ashikulbari.dev',
     createdAt: '2023-07-01T00:00:00Z',
-    updatedAt: '2024-03-01T00:00:00Z'
+    updatedAt: '2024-03-01T00:00:00Z',
+    type: 'case-study'
   }
 ];
 

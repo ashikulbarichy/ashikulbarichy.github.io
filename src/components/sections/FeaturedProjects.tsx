@@ -86,8 +86,8 @@ const FeaturedProjects = () => {
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center justify-between text-sm text-white/90">
                     <span>{project.date}</span>
-                    <span className="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs">
-                      Case Study
+                    <span className="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs capitalize">
+                      {project.type === 'case-study' ? 'Case Study' : 'Application'}
                     </span>
                     <span>{project.duration}</span>
                   </div>

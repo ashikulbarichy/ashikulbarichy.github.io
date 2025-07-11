@@ -10,8 +10,8 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({ 
-  title = "Ashikul Bari Chowdhury - Full Stack Developer & Project Manager",
-  description = "Experienced full-stack developer and project manager specializing in React, Angular, ASP.NET, Python, and modern web applications. 5+ years experience leading teams and delivering scalable solutions.",
+  title = "Ashikul Bari Chowdhury - ASP.NET Developer & Project Manager",
+  description = "Experienced ASP.NET developer and project manager specializing in React, Angular, ASP.NET, Python, and modern web applications. 5+ years experience leading teams and delivering scalable solutions.",
   keywords = "Ashikul Bari Chowdhury, full stack developer, project manager, React developer, Angular developer, ASP.NET developer, Python developer, web development, software engineer, team lead, Dhaka Bangladesh",
   image = "https://ashikulbari.dev/Ashikul_Bari_CV.png",
   url

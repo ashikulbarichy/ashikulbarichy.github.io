@@ -12,16 +12,18 @@ import {
   Zap,
   Shield,
   DollarSign,
-  Code2
+  Code2,
+  NotebookPen,
+  File,
+  Database
 } from 'lucide-react';
 
 // Import brand icons from react-icons
 import { 
   SiDotnet, 
-  SiAngular, 
+  SiReact, 
   SiPython, 
-  SiPostgresql, 
-  SiMongodb 
+  SiPostgresql,
 } from 'react-icons/si';
 
 const Skills = () => {
@@ -38,10 +40,10 @@ const Skills = () => {
           color: 'from-purple-500 to-blue-500'
         },
         { 
-          name: 'Angular', 
-          icon: SiAngular,
+          name: 'React', 
+          icon: SiReact,
           description: 'Dynamic web interfaces',
-          color: 'from-red-500 to-pink-500'
+          color: 'from-blue-500 to-cyan-500'
         },
         { 
           name: 'Python', 
@@ -56,10 +58,10 @@ const Skills = () => {
           color: 'from-blue-500 to-indigo-500'
         },
         { 
-          name: 'MongoDB', 
-          icon: SiMongodb,
-          description: 'NoSQL database solutions',
-          color: 'from-green-500 to-teal-500'
+          name: 'Entity Framework Core', 
+          icon: Database,
+          description: 'ORM for .NET applications',
+          color: 'from-purple-600 to-blue-600'
         }
       ]
     },
@@ -101,6 +103,12 @@ const Skills = () => {
           icon: DollarSign,
           description: 'Resource allocation & cost control',
           color: 'from-purple-500 to-pink-500'
+        },
+        { 
+          name: 'Project Documentation', 
+          icon: File,
+          description: 'Project documentation & reporting',
+          color: 'from-green-500 to-emerald-500'
         }
       ]
     },
@@ -120,15 +128,15 @@ const Skills = () => {
           color: 'from-blue-500 to-cyan-500'
         },
         { 
-          name: 'AWS/Cloud', 
+          name: 'Azure/Cloud', 
           icon: Cloud,
           description: 'Cloud infrastructure & services',
           color: 'from-orange-500 to-yellow-500'
         },
         { 
-          name: 'Jira/Confluence', 
+          name: 'Jira/Clickup', 
           icon: Trello,
-          description: 'Project tracking & documentation',
+          description: 'Project tracking & management',
           color: 'from-blue-600 to-indigo-600'
         },
         { 
@@ -142,10 +150,18 @@ const Skills = () => {
           icon: Slack,
           description: 'Team communication & collaboration',
           color: 'from-green-500 to-teal-500'
+        },
+        { 
+          name: 'Notion', 
+          icon: NotebookPen,
+          description: 'Documentation & Planning',
+          color: 'from-green-500 to-teal-500'
         }
       ]
     }
   };
+
+  
 
   return (
     <section id="skills" className="content-spacing section-container">
@@ -160,8 +176,8 @@ const Skills = () => {
             Expertise & Capabilities
           </h2>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-            A comprehensive skill set spanning <strong>full-stack development</strong> and <strong>project management</strong>, 
-            honed through years of hands-on experience with <strong>React</strong>, <strong>Angular</strong>, <strong>ASP.NET</strong>, 
+            A comprehensive skill set spanning <strong>backend development</strong> and <strong>project management</strong>, 
+            honed through multiple projects with <strong>React</strong>, <strong>ASP.NET</strong>, 
             <strong>Python</strong>, and continuous learning.
           </p>
         </div>
@@ -241,20 +257,20 @@ const Skills = () => {
               
               <p className="text-sm md:text-base text-gray-300 leading-relaxed max-w-2xl mx-auto">
                 Technology evolves rapidly, and I'm committed to staying at the forefront of innovation. 
-                I regularly update my skills, explore new technologies like <strong>React 18</strong>, <strong>Angular 17</strong>, 
-                <strong>.NET 8</strong>, and adapt to industry best practices 
+                I regularly update my skills, explore new technologies like <strong>React 19</strong>,
+                <strong>.NET 9</strong>, proper <strong>Agile Methodology</strong> and adapt to industry best practices 
                 to deliver cutting-edge solutions that drive business success.
               </p>
               
               <div className="flex flex-wrap justify-center gap-3 mt-6">
                 <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs rounded-full border border-white/10">
-                  Always Learning
+                  Continous Learning
                 </span>
                 <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs rounded-full border border-white/10">
-                  Industry Best Practices
+                  Industry Practices
                 </span>
                 <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs rounded-full border border-white/10">
-                  Innovation Focused
+                  Goal Oriented
                 </span>
               </div>
             </div>

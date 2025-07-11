@@ -1,11 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ChevronDown, Download, ExternalLink, Sparkles } from 'lucide-react'
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const [showScroll, setShowScroll] = useState(true)
+  const heroRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     setIsVisible(true)
+  }, [])
+
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        setShowScroll(entry.isIntersecting)
+      },
+      { threshold: 0.2 }
+    )
+    if (heroRef.current) {
+      observer.observe(heroRef.current)
+    }
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current)
+    }
   }, [])
 
   const scrollToProjects = () => {
@@ -25,7 +42,7 @@ const Hero = () => {
   // Removed unused handleGetInTouch function
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden section-container">
+    <section ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden section-container">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-gradient-to-r from-blue-600/30 to-indigo-600/30 rounded-full blur-3xl animate-pulse-glow" />
@@ -36,7 +53,7 @@ const Hero = () => {
       <div className="container-width section-padding content-spacing">
         <div className="grid-responsive-2 gap-responsive items-center">
           {/* Left Content */}
-          <div className={`space-y-6 md:space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className={`space-y-6 md:space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}> 
             <div className="space-y-4 md:space-y-6">
               <div className="flex items-center space-x-2 md:space-x-3">
                 <div className="w-8 md:w-16 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500" />
@@ -55,10 +72,8 @@ const Hero = () => {
               </h1>
               
               <p className="text-base md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                I craft exceptional digital experiences through code and leadership. 
-                Specializing in <strong>React</strong>, <strong>Angular</strong>, <strong>ASP.NET</strong>, and <strong>Python</strong> development with 
-                <strong> 5+ years of experience</strong> leading teams and delivering scalable solutions 
-                that drive business growth and innovation.
+                <strong>ASP.NET developer</strong> skilled in <strong>React</strong> and <strong>Python</strong>, with a focus on <strong>project management</strong>. I build scalable solutions 
+                while combining technical expertise, team values and leadership to drive goal based delivery.
               </p>
             </div>
 
@@ -84,22 +99,12 @@ const Hero = () => {
                   <span>Download CV</span>
                 </span>
               </button>
-              
-              <a
-                href="mailto:ashikul.chowdhury@proton.me"
-                className="btn-tertiary btn-interactive group w-full sm:w-auto flex items-center justify-center"
-                aria-label="Get in touch with Ashikul Bari Chowdhury via email"
-                style={{ textDecoration: 'none' }}
-              >
-                <span className="flex items-center justify-center space-x-2">
-                  <span>Get in Touch</span>
-                </span>
-              </a>
+              {/* Removed Get in Touch button */}
             </div>
           </div>
 
           {/* Right Content - Enhanced Profile Image */}
-          <div className={`relative order-first lg:order-last ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
+          <div className={`relative order-first lg:order-last ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}> 
             <div className="relative w-full max-w-sm md:max-w-lg mx-auto">
               {/* Enhanced Decorative Elements */}
               <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-48 h-48 md:w-80 md:h-80 bg-gradient-to-br from-blue-600/30 to-indigo-600/30 rounded-full blur-2xl animate-pulse-glow" />
@@ -130,8 +135,8 @@ const Hero = () => {
         </div>
 
         {/* Enhanced Scroll Indicator */}
-        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="flex flex-col items-center space-y-2 md:space-y-3 text-slate-400">
+        <div className={`fixed left-1/2 bottom-4 md:bottom-8 z-50 -translate-x-1/2 w-auto transition-all duration-500 ${showScroll ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+          <div className="flex flex-col items-center space-y-2 md:space-y-3 text-slate-400 animate-bounce">
             <span className="text-xs md:text-sm font-medium">Scroll to explore</span>
             <div className="p-2 md:p-3 rounded-full border border-blue-400/30 bg-blue-900/20 backdrop-blur-sm">
               <ChevronDown className="h-4 w-4 md:h-5 md:w-5 text-blue-400" />
