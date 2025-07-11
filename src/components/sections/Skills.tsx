@@ -12,7 +12,6 @@ import {
   Zap,
   Shield,
   DollarSign,
-  Code2,
   NotebookPen,
   File,
   Database
