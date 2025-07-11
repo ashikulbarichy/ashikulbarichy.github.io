@@ -56,7 +56,7 @@ const Navigation = () => {
               <Code2 className="h-5 w-5 md:h-6 md:w-6 text-primary" />
             </div>
             <span className="text-lg md:text-xl font-bold heading-gradient hidden sm:block">Ashikul Bari Chowdhury</span>
-            <span className="text-lg md:text-xl font-bold heading-gradient sm:hidden">ABC</span>
+            <span className="text-lg md:text-xl font-bold heading-gradient sm:hidden">Ashikul Bari</span>
           </Link>
 
           {/* Desktop Navigation */}

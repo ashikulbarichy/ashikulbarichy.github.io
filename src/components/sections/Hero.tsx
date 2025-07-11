@@ -34,8 +34,8 @@ const Hero = () => {
 
   const downloadCV = () => {
     const link = document.createElement('a')
-    link.href = ''
-    link.download = ''
+    link.href = 'https://www.dropbox.com/scl/fi/mi6xs19gw2xd7axkzsrxn/ashikul-bari-cv.pdf?rlkey=0l4xas6blt87hsbujvwl1ggkg&st=mc03tqr4&dl=1'
+    link.download = '/ashikul-bari-cv.pdf'
     link.click()
   }
 
@@ -64,7 +64,7 @@ const Hero = () => {
               </div>
               
               <h1 className="text-hero font-bold leading-tight">
-                <span className="heading-gradient">Full Stack</span>
+                <span className="heading-gradient">ASP.NET</span>
                 <br />
                 <span className="text-white">Developer &</span>
                 <br />
@@ -114,7 +114,7 @@ const Hero = () => {
               <div className="relative card-trusted rounded-2xl md:rounded-3xl p-4 md:p-8 hover-lift">
                 <div className="relative w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden bg-gradient-to-br from-blue-900/40 to-indigo-900/40 border border-blue-400/20">
                   <img
-                    src="https://miro.medium.com/v2/resize:fit:800/0*hfcOIGR7ni8uoJZQ.jpg"
+                    src="https://www.dropbox.com/scl/fi/217kcnp8jq5q6z7yxc9bf/pro_pic.png?rlkey=fp0rg36ds9ojrozll3zdy25uv&st=0ssqyels&dl=1"
                     alt="Ashikul Bari Chowdhury - Full Stack Developer & Project Manager specializing in React, Angular, ASP.NET"
                     className="w-full h-full object-cover object-center"
                     loading="eager"
