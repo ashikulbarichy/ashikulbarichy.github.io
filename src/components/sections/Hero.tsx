@@ -210,8 +210,8 @@ const Hero = () => {
       </div>
 
       <div className="container-width section-padding content-spacing flex flex-col items-center justify-center relative z-10">
-        <div className={`w-full max-w-3xl mx-auto flex flex-col items-center justify-center text-center space-y-4 sm:space-y-6 md:space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}> 
-          <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-4 sm:mb-6">
+        <div className={`w-full max-w-3xl mx-auto flex flex-col items-center justify-center text-center space-y-3 sm:space-y-6 md:space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}> 
+          <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-2 sm:mb-4">
             <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
             <div className="flex items-center space-x-2">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-purple-400 animate-pulse" />
@@ -220,12 +220,12 @@ const Hero = () => {
             <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
           </div>
           {/* Highlighted Name */}
-          <h1 className="text-hero font-extrabold leading-tight tracking-tight mb-2 sm:mb-4 text-center">
-            <span className="text-pink-400 drop-shadow-lg" style={{fontSize: 'clamp(2rem,6vw,5rem)'}}>
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-2 sm:mb-4 text-center">
+            <span className="text-pink-400 drop-shadow-lg" style={{fontSize: 'clamp(1.5rem,6vw,5rem)'}}>
               Ashikul Bari Chowdhury
             </span>
           </h1>
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4 text-white tracking-wide drop-shadow-sm text-center">
+          <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4 text-white tracking-wide drop-shadow-sm text-center">
             ASP.NET Developer & Project Manager
           </h2>
           <div className="flex justify-center items-center mt-2 sm:mt-4 mb-2 sm:mb-4">

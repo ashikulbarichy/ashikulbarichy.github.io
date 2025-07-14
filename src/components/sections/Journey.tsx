@@ -69,16 +69,16 @@ const Journey = () => {
     <section id="journey" className="content-spacing section-container">
       <div className="container-width section-padding">
         <div className="text-center mb-4 sm:mb-6">
-          <div className="flex items-center justify-center space-x-2 mb-4 sm:mb-5">
+          <div className="flex items-center justify-center space-x-2 mb-2 sm:mb-5">
             <div className="w-8 md:w-12 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
             <div className="flex items-center space-x-2">
               <Briefcase className="h-5 w-5 md:h-6 md:w-6 text-purple-400 animate-pulse" />
-              <span className="text-purple-400 font-medium text-sm md:text-lg">My Journey</span>
+              <span className="text-purple-400 font-medium text-xs sm:text-sm md:text-lg">My Journey</span>
             </div>
             <div className="w-8 md:w-12 h-0.5 bg-gradient-to-r from-fuchsia-500 to-purple-500" />
           </div>
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold heading-gradient text-center mb-2 sm:mb-3">Volunteering, Learning & Growth</h2>
+        <h2 className="text-xl sm:text-2xl md:text-4xl font-extrabold heading-gradient text-center mb-2 sm:mb-3">Volunteering, Learning & Growth</h2>
         <div className="flex flex-col mt-6 w-[70%] max-w-xl mx-auto">
           {experiences.map((exp, idx) => {
             const isOpen = openIndex === idx;

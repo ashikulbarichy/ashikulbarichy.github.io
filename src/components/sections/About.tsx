@@ -6,30 +6,30 @@ const About = () => {
     <section id="about" className="content-spacing trusted-gradient section-container">
       {/* Two Column Layout (from About) */}
       <div className="container-width section-padding">
-        <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-4 sm:mb-6">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-2 sm:mb-4">
             <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
             <div className="flex items-center space-x-2">
               <User className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-purple-400 animate-pulse" />
-              <span className="text-purple-300 font-semibold text-sm md:text-lg">About Me</span>
+              <span className="text-purple-300 font-semibold text-xs sm:text-sm md:text-lg">About Me</span>
             </div>
             <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold heading-gradient leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold heading-gradient leading-tight">
             Crafting Digital & Unique Solutions
           </h2>
         </div>
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             {/* Left Column - Description */}
-            <div className="space-y-6 sm:space-y-8">
-              <div className="space-y-4 sm:space-y-6">
-                <p className="text-sm sm:text-base md:text-lg text-body leading-relaxed">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="space-y-3 sm:space-y-6">
+                <p className="text-xs sm:text-base md:text-lg text-body leading-relaxed">
                   I passionately work in creating robust web applications using ASP.NET Core and PostgreSQL. 
                   My approach combines strategic thinking, secured approach and agile methodologies containing
                   business needs and team values.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg text-body leading-relaxed">
+                <p className="text-xs sm:text-base md:text-lg text-body leading-relaxed">
                   Based in Dhaka, Bangladesh, I am looking for oppurtunities both remote and on-site to deliver technical solutions that drive 
                   business success.
                 </p>

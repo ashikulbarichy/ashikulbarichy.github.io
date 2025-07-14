@@ -41,25 +41,25 @@ const FeaturedProjects = () => {
   return (
     <section id="featured-projects" className="content-spacing bg-black/20 section-container">
       <div className="container-width section-padding">
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-4 md:mb-6">
+        <div className="text-center mb-6 sm:mb-10 md:mb-16">
+          <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-2 md:mb-6">
             <div className="w-6 sm:w-8 md:w-12 h-0.5 bg-primary" />
             <div className="flex items-center space-x-2">
               <Briefcase className="h-4 w-4 md:h-5 md:w-5 text-primary animate-pulse" />
-              <span className="text-primary font-medium text-sm md:text-base">My Work</span>
+              <span className="text-primary font-medium text-xs sm:text-sm md:text-base">My Work</span>
             </div>
             <div className="w-6 sm:w-8 md:w-12 h-0.5 bg-primary" />
           </div>
-          <h2 className="text-section-title font-bold heading-gradient mb-4 md:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold heading-gradient mb-3 md:mb-6">
             Featured Projects
           </h2>
         </div>
 
-        <div className="max-w-3xl mx-auto mb-8 md:mb-14 px-4">
+        <div className="max-w-3xl mx-auto mb-6 md:mb-14 px-2 sm:px-4">
           {projects.map((project) => (
-            <article key={project.id} className="relative flex flex-col md:flex-row glass-effect rounded-3xl overflow-hidden shadow-2xl border border-fuchsia-500/20 group hover:shadow-fuchsia-500/30 transition-shadow duration-300">
+            <article key={project.id} className="relative flex flex-col md:flex-row glass-effect rounded-3xl overflow-hidden shadow-2xl border border-fuchsia-500/20 group hover:shadow-fuchsia-500/30 transition-shadow duration-300 mb-6 last:mb-0">
               {/* Image Section */}
-              <div className="relative md:w-1/2 h-56 md:h-auto overflow-hidden">
+              <div className="relative w-full md:w-1/2 h-40 sm:h-56 md:h-auto overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}

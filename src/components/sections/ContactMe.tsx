@@ -9,22 +9,22 @@ const ContactMe = () => {
     <section id="contact" className="content-spacing section-container bg-black/30 backdrop-blur-md">
       <div className="container-width section-padding">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="space-y-6 sm:space-y-8 md:space-y-10">
-            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+          <div className="space-y-4 sm:space-y-8 md:space-y-10">
+            <div className="space-y-2 sm:space-y-4 md:space-y-6">
               <div className="flex items-center justify-center space-x-2 md:space-x-3">
                 <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
                 <div className="flex items-center space-x-2">
                   <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-purple-400 animate-pulse" />
-                  <span className="text-purple-300 font-semibold text-sm md:text-lg">Get In Touch</span>
+                  <span className="text-purple-300 font-semibold text-xs sm:text-sm md:text-lg">Get In Touch</span>
                 </div>
                 <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
               </div>
               
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold heading-gradient leading-tight">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold heading-gradient leading-tight">
                 Let's Work Together
               </h2>
               
-              <p className="text-sm sm:text-base md:text-xl text-body leading-relaxed max-w-3xl mx-auto px-4">
+              <p className="text-xs sm:text-base md:text-xl text-body leading-relaxed max-w-3xl mx-auto px-2 sm:px-4">
                 I'm open to discussing new opportunities 
                 or just having a chat about technology and development. Feel free to reach out!
               </p>

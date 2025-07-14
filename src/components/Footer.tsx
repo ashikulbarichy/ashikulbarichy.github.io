@@ -6,8 +6,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-black/20 border-t border-white/10">
-      <div className="container-width section-padding py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-x-16 items-start">
+      <div className="container-width section-padding py-6 sm:py-8 md:py-12">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8 lg:gap-x-16 items-start">
           {/* Brand */}
           <div className="sm:col-span-1 lg:col-span-1 flex flex-col items-start lg:pr-8 lg:border-r lg:border-white/10">
             <div className="flex items-center space-x-2 mb-3 sm:mb-4">

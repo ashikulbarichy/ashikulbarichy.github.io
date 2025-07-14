@@ -44,7 +44,7 @@ const ProjectsGrid = ({ selectedCategory = 'all' }: ProjectsGridProps) => {
   }
 
   return (
-    <section className="py-20">
+    <section className="py-10 sm:py-16 md:py-20">
       <div className="container-width section-padding">
         {/* Search Bar */}
         <div className="max-w-md mx-auto mb-12">
@@ -55,17 +55,17 @@ const ProjectsGrid = ({ selectedCategory = 'all' }: ProjectsGridProps) => {
               placeholder="Search projects..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-full text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+              className="w-full pl-12 pr-4 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-full text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm sm:text-base"
             />
           </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8 md:gap-10">
           {projects.map((project) => (
             <article key={project.id} className="relative glass-effect rounded-3xl overflow-hidden shadow-2xl border border-fuchsia-500/20 group hover:shadow-fuchsia-500/30 transition-shadow duration-300 bg-gradient-to-br from-[#231942]/80 to-[#2d2154]/90">
               {/* Image Section */}
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-40 sm:h-56 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -124,7 +124,7 @@ const ProjectsGrid = ({ selectedCategory = 'all' }: ProjectsGridProps) => {
                 </div>
               </div>
               {/* Content Section */}
-              <div className="p-7 flex flex-col space-y-5">
+              <div className="p-4 sm:p-6 md:p-7 flex flex-col space-y-4 sm:space-y-5">
                 <h3 className="text-2xl font-bold text-white mb-2 tracking-tight leading-tight">
                   {project.title}
                 </h3>

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Code2 } from 'lucide-react'
+import { Code2, Menu, X } from 'lucide-react'
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const Navigation = () => {
           </div>
         </Link>
         {/* Navigation Tabs - Right Side */}
-        <div className="flex items-center space-x-1">
+        <div className="hidden sm:flex items-center space-x-1">
           {location.pathname === '/projects' ? (
             <Link
               to="/"
@@ -116,6 +117,43 @@ const Navigation = () => {
             ))
           )}
         </div>
+        {/* Hamburger for mobile */}
+        <button
+          className="sm:hidden flex items-center justify-center p-2 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-400"
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
+        </button>
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="absolute top-12 left-0 w-full bg-background/95 rounded-2xl shadow-2xl border border-white/10 flex flex-col items-center py-4 z-50 sm:hidden animate-fade-in-up">
+            {location.pathname === '/projects' ? (
+              <Link
+                to="/"
+                className="px-4 py-2 rounded-full font-medium text-base text-white hover:text-purple-300 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+            ) : (
+              navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  onClick={(e) => { handleNavLinkClick(e, item.href); setMobileMenuOpen(false); }}
+                  className={`px-4 py-2 rounded-full font-medium text-base transition-all duration-200 hover:text-purple-300 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-2 ${
+                    isActive(item.href)
+                      ? 'bg-purple-700/80 text-purple-200 shadow-md'
+                      : 'text-gray-200'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))
+            )}
+          </div>
+        )}
       </div>
     </nav>
   )
