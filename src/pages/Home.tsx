@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <SEOHead 
         title="Ashikul Bari Chowdhury - ASP.NET Developer & Project Manager | React, Angular, ASP.NET Expert"
-        description="Experienced full-stack developer and project manager specializing in React, Angular, ASP.NET, Python, and modern web applications. 5+ years experience leading teams and delivering scalable solutions in Dhaka, Bangladesh."
+        description="ASP.NET developer and project manager specializing in React, ASP.NET, Python, and modern web applications. 1 year experience leading teams and delivering scalable solutions in Dhaka, Bangladesh."
         keywords="Ashikul Bari Chowdhury, full stack developer, project manager, React developer, Angular developer, ASP.NET developer, Python developer, web development, software engineer, team lead, Dhaka Bangladesh, freelance developer, enterprise solutions"
       />
       <Hero />
