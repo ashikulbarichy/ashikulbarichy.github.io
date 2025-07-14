@@ -237,7 +237,7 @@ const Hero = () => {
             </span>
           </div>
           <p className="text-sm sm:text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mt-2 mb-6 sm:mb-10 text-center px-4">
-            Fresh ASP.NET developer building scalable solutions using EF Core while integrating core values to the team for goal based delivery.
+            Fresh ASP.NET developer building scalable web API using EF Core and PostgreSQL while integrating core values to the team for goal based delivery.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center mb-20 sm:mb-32 px-4">
             <button 

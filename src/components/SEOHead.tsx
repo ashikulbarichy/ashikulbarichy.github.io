@@ -11,13 +11,13 @@ interface SEOHeadProps {
 
 const SEOHead = ({ 
   title = "Ashikul Bari Chowdhury - ASP.NET Developer & Project Manager",
-  description = "ASP.NET developer and project manager specializing in React, ASP.NET, Python, and modern web applications. 1 year experience leading teams and delivering scalable solutions.",
-  keywords = "Ashikul Bari Chowdhury, full stack developer, project manager, React developer, Angular developer, ASP.NET developer, Python developer, web development, software engineer, team lead, Dhaka Bangladesh",
-  image = "https://ashikulbari.dev/Ashikul_Bari_CV.png",
+  description = "ASP.NET developer and project manager specializing in React, ASP.NET, Python, and modern web applications. Passionate abouteading teams and delivering scalable solutions.",
+  keywords = "Ashikul Bari Chowdhury, backend developer, project manager, React developer, ASP.NET developer, Python developer, web development, software engineer, team lead, Dhaka Bangladesh",
+  image = "https://ashikulbari.me/Ashikul_Bari_CV.png",
   url
 }: SEOHeadProps) => {
   const location = useLocation();
-  const currentUrl = url || `https://ashikulbari.dev${location.pathname}`;
+  const currentUrl = url || `https://ashikulbari.me${location.pathname}`;
 
   useEffect(() => {
     // Update document title

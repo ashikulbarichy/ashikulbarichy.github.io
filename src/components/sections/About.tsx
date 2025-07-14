@@ -25,9 +25,10 @@ const About = () => {
             <div className="space-y-4 sm:space-y-6">
               <div className="space-y-3 sm:space-y-6">
                 <p className="text-xs sm:text-base md:text-lg text-body leading-relaxed">
-                  I passionately work in creating robust web applications using ASP.NET Core and PostgreSQL. 
-                  My approach combines strategic thinking, secured approach and agile methodologies containing
-                  business needs and team values.
+                  I create robust web applications using ASP.NET Core and PostgreSQL using EF Core. 
+                  My approach combines security practices and agile methodologies containing
+                  business needs and team values. With strong interest in cyber security, I am currently
+                  learning best practices to deploy secure cloud based solutions.
                 </p>
                 <p className="text-xs sm:text-base md:text-lg text-body leading-relaxed">
                   Based in Dhaka, Bangladesh, I am looking for oppurtunities both remote and on-site to deliver technical solutions that drive 
@@ -65,7 +66,7 @@ const About = () => {
                     {/* Placeholder for your image - replace src with your actual image */}
                     <img 
                       src="https://www.dropbox.com/scl/fi/217kcnp8jq5q6z7yxc9bf/pro_pic.png?rlkey=fp0rg36ds9ojrozll3zdy25uv&st=by85hrsj&dl=1" 
-                      alt="Ashikul Bari Chowdhury - Full Stack Developer & Project Manager"
+                      alt="Ashikul Bari Chowdhury - ASP.NET Developer & Project Manager"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     {/* Overlay with interactive elements */}

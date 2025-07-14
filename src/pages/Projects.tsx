@@ -25,10 +25,10 @@ export default function Projects() {
         </Link>
       </div>
       <SEOHead 
-        title="Projects Portfolio - Ashikul Bari Chowdhury | React, Angular, ASP.NET Projects"
-        description="Explore Ashikul Bari Chowdhury's portfolio of full-stack development projects including e-commerce platforms, healthcare systems, financial dashboards, and enterprise solutions built with React, Angular, ASP.NET, and Python."
-        keywords="Ashikul Bari projects, full stack developer portfolio, React projects, Angular projects, ASP.NET projects, Python projects, e-commerce development, healthcare software, financial applications, enterprise solutions, web development portfolio"
-        url="https://ashikulbari.dev/projects"
+        title="Projects Portfolio - Ashikul Bari Chowdhury | React, ASP.NET, PostgreSQL Projects"
+        description="Explore Ashikul Bari Chowdhury's portfolio of backend development projects including edTech platforms, healthcare research, financial dashboards, and enterprise solutions built with React, ASP.NET, PostgreSQL and Python."
+        keywords="Ashikul Bari projects, backend developer portfolio, React projects, ASP.NET projects, Python projects, e-commerce development, healthcare software, financial applications, enterprise solutions, web development portfolio"
+        url="https://ashikulbari.me/projects"
       />
       <ProjectsHero />
       <ProjectsFilter onFilterChange={handleFilterChange} />

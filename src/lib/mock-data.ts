@@ -20,11 +20,11 @@ export const mockProjects: Project[] = [
   {
     id: 1,
     title: 'AI Powered Intellegent evaluation and feedback system',
-    description: 'We want to make it easier and accessible for teachers to evaluate students and provide feedback. We are currently working on a project to evaluate students based on their performance and provide feedback using detailed analytics.',
+    description: 'We want to make A/O levels tests easier and accessible for teachers to evaluate students and provide feedback. We are currently working on a project to evaluate students based on their performance and provide feedback using detailed analytics.',
     image: 'https://api.ajackus.com/wp-content/uploads/2022/01/AI-Powered-technologies-transformation-2022.png',
-    tags: ['React', 'TypeScript', 'SQLite', 'ASP.NET', 'EF Core', 'Docker', 'AI'],
+    tags: ['React', 'TypeScript', 'SQLite', 'ASP.NET', 'EF Core', 'Github', 'AI'],
     category: 'EdTech',
-    date: 'July 2025',
+    date: 'May 2025',
     duration: '3 months',
     features: [
       'Auto Evaluation system with AI',
@@ -33,18 +33,18 @@ export const mockProjects: Project[] = [
     ],
     githubUrl: 'https://github.com/ashikul/ecommerce-platform',
     projectUrl: 'https://ai-eval-demo.com',
-    isLive: true,
+    isLive: false,
     type: 'application'
   },
   {
     id: 2,
     title: 'Quantum ML Research',
-    description: 'We want to conduct research on how quantum machine learning can be used to solve real world problems in medical domain. We are currently working on a project to identify early stage kidney stone using quantum machine learning.',
+    description: 'We are conducting research on how quantum machine learning can be used to solve real world problems in healthcare domain. We are currently working on a project to identify early stage kidney stone using ultrasound images using quantum machine learning.',
     image: 'https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=600',
-    tags: ['QISKIT', 'IBM', 'Python', 'CV'],
+    tags: ['QISKIT', 'IBM', 'Python', 'Computer Vision'],
     category: 'Healthcare',
-    date: 'Mar 2024',
-    duration: '5 months',
+    date: 'May 2025',
+    duration: '3+ months',
     features: [
       'Ultrasound Image Analysis',
       'No stone or stone prediction',

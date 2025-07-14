@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <>
       <SEOHead 
-        title="Ashikul Bari Chowdhury - ASP.NET Developer & Project Manager | React, Angular, ASP.NET Expert"
-        description="ASP.NET developer and project manager specializing in React, ASP.NET, Python, and modern web applications. 1 year experience leading teams and delivering scalable solutions in Dhaka, Bangladesh."
-        keywords="Ashikul Bari Chowdhury, full stack developer, project manager, React developer, Angular developer, ASP.NET developer, Python developer, web development, software engineer, team lead, Dhaka Bangladesh, freelance developer, enterprise solutions"
+        title="Ashikul Bari Chowdhury - ASP.NET Developer & Project Manager | React, EF Core, ASP.NET Expert"
+        description="ASP.NET developer and project manager specializing in React, ASP.NET, EF Core, Python, and modern web applications. Passionate about leading teams and delivering scalable solutions in Dhaka, Bangladesh."
+        keywords="Ashikul Bari Chowdhury, full stack developer, project manager, React developer, ASP.NET developer, Python developer, web development, software engineer, team lead, Dhaka Bangladesh, freelance developer, enterprise solutions"
       />
       <Hero />
       <About />
