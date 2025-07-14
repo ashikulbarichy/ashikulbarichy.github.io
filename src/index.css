@@ -4,31 +4,31 @@
 
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 10, 10, 10;
-  --background-end-rgb: 0, 0, 0;
+  --background-start-rgb: 32, 0, 44;
+  --background-end-rgb: 16, 0, 32;
 }
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 91.2% 59.8%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 94.1%;
+    --background: 270 60% 8%; /* deep purple */
+    --foreground: 270 40% 98%;
+    --card: 270 60% 8%;
+    --card-foreground: 270 40% 98%;
+    --popover: 270 60% 8%;
+    --popover-foreground: 270 40% 98%;
+    --primary: 265 91% 70%; /* purple */
+    --primary-foreground: 270 60% 8%;
+    --secondary: 285 80% 60%; /* lighter purple */
+    --secondary-foreground: 270 40% 98%;
+    --muted: 270 32% 17%;
+    --muted-foreground: 270 20% 65%;
+    --accent: 285 60% 40%;
+    --accent-foreground: 270 40% 98%;
+    --destructive: 340 82% 52%;
+    --destructive-foreground: 270 40% 98%;
+    --border: 270 32% 17%;
+    --input: 270 32% 17%;
+    --ring: 270 80% 90%;
     --radius: 0.5rem;
   }
 }
@@ -39,7 +39,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #2a003c 0%, #3a185a 100%);
   }
 }
 
@@ -53,11 +53,11 @@
   }
   
   .heading-gradient {
-    @apply bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent;
+    @apply text-white;
   }
   
   .glass-effect {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+    @apply bg-white/5 backdrop-blur-sm border border-gray-600;
   }
   
   .hover-lift {
@@ -65,66 +65,66 @@
   }
 
   .btn-primary {
-    @apply relative overflow-hidden px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50;
+    @apply relative overflow-hidden px-6 py-3 md:px-8 md:py-4 border-2 border-purple-300 text-white rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(168, 85, 247, 0.2) 100%);
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
-
   .btn-primary::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-300 to-indigo-400 opacity-0 transition-opacity duration-300;
+    display: none;
   }
-
-  .btn-primary:hover::before {
-    @apply opacity-100;
-  }
-
   .btn-primary span {
     @apply relative z-10 transition-colors duration-300;
   }
-
   .btn-primary:hover span {
-    @apply text-black;
+    @apply text-white;
   }
-
+  .btn-primary:hover {
+    background: #4c1d95;
+    color: #fff;
+    border-color: #7c3aed;
+  }
   .btn-primary-small {
-    @apply relative overflow-hidden px-3 py-2 md:px-4 md:py-2 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white rounded-full font-medium text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50;
+    @apply relative overflow-hidden px-3 py-2 md:px-4 md:py-2 border-2 border-purple-300 text-white rounded-full font-medium text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(168, 85, 247, 0.2) 100%);
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
-
   .btn-primary-small::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-300 to-indigo-400 opacity-0 transition-opacity duration-300;
+    display: none;
   }
-
-  .btn-primary-small:hover::before {
-    @apply opacity-100;
-  }
-
   .btn-primary-small span {
     @apply relative z-10 transition-colors duration-300;
   }
-
   .btn-primary-small:hover span {
-    @apply text-black;
+    @apply text-white;
+  }
+  .btn-primary-small:hover {
+    background: #4c1d95;
+    color: #fff;
+    border-color: #7c3aed;
   }
 
   .btn-secondary {
-    @apply relative overflow-hidden px-6 py-3 md:px-8 md:py-4 glass-effect text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:bg-white/10;
+    @apply relative overflow-hidden px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-gray-600 text-gray-100 rounded-full font-medium transition-all duration-300 transform hover:scale-105;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
 
+  .btn-secondary:hover {
+    background: #a1a1aa; /* Tailwind gray-400 */
+    color: #18181b; /* Tailwind gray-900 */
+    border-color: #a1a1aa;
+  }
   .btn-secondary::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 opacity-0 transition-opacity duration-300;
+    display: none;
   }
-
-  .btn-secondary:hover::before {
-    @apply opacity-100;
-  }
-
   .btn-secondary span {
     @apply relative z-10 transition-colors duration-300;
   }
 
   .btn-secondary:hover span {
-    @apply text-black;
+    @apply text-gray-900;
   }
 
   .card-trusted {
@@ -261,6 +261,24 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .neutral-accent {
+    @apply text-gray-400 border-gray-600;
+  }
+  .muted-lavender {
+    @apply text-purple-300;
+  }
+  .border-neutral {
+    @apply border-gray-600;
+  }
+  .text-body {
+    @apply text-gray-100;
+  }
+  .text-secondary {
+    @apply text-gray-400;
+  }
+  .text-accent {
+    @apply text-pink-500;
+  }
 }
 
 /* Custom scrollbar */
@@ -340,18 +358,72 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* Optimized Flying Element Animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-25px) translateX(-5px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-10px) translateX(15px) rotate(3deg);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) translateX(-8px) rotate(-2deg);
+  }
+  66% {
+    transform: translateY(-30px) translateX(12px) rotate(1deg);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) translateX(6px) rotate(2deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-medium {
+  animation: float-medium 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+  will-change: transform;
+}
+
 /* Interactive button effects */
 .btn-interactive {
   @apply relative overflow-hidden transition-all duration-300 transform;
 }
 
+/* Remove the overlay effect */
 .btn-interactive::after {
-  content: '';
-  @apply absolute top-1/2 left-1/2 w-0 h-0 bg-white/20 rounded-full transition-all duration-500 transform -translate-x-1/2 -translate-y-1/2;
+  content: none !important;
+  display: none !important;
 }
 
 .btn-interactive:hover::after {
-  @apply w-full h-full;
+  content: none !important;
+  display: none !important;
 }
 
 .btn-interactive:active {
@@ -422,6 +494,15 @@
   }
 }
 
+/* Hide vertical scrollbar but keep scrolling functional */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 /* Prevent horizontal overflow */
 body {
   overflow-x: hidden;
@@ -449,26 +530,40 @@ body {
   
   .btn-primary,
   .btn-secondary {
-    @apply px-6 py-3 text-sm;
+    @apply px-4 py-2.5 text-sm;
   }
   
   .text-hero {
-    @apply text-3xl leading-tight;
+    @apply text-2xl leading-tight;
   }
   
   .text-section-title {
-    @apply text-3xl;
+    @apply text-2xl;
   }
 
   /* Mobile Skills Grid */
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     @apply gap-3;
   }
 
   .skills-card {
-    min-height: 160px;
+    min-height: 140px;
     @apply p-3;
+  }
+  
+  /* Mobile Navigation */
+  .social-sidebar {
+    display: none;
+  }
+  
+  /* Mobile Content Spacing */
+  .content-spacing {
+    @apply py-8;
+  }
+  
+  .content-spacing-small {
+    @apply py-6;
   }
 }
 

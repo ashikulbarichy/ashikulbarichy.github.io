@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Code, Layers } from 'lucide-react';
+import { Code, Layers, FolderOpen } from 'lucide-react';
 
 const ProjectsHero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +26,10 @@ const ProjectsHero = () => {
           <div className="space-y-6">
             <div className="flex items-center justify-center space-x-2">
               <div className="w-12 h-0.5 bg-primary" />
-              <span className="text-primary font-medium">My Portfolio</span>
+              <div className="flex items-center space-x-2">
+                <FolderOpen className="h-6 w-6 text-primary animate-pulse" />
+                <span className="text-primary font-medium">My Portfolio</span>
+              </div>
               <div className="w-12 h-0.5 bg-primary" />
             </div>
             

@@ -1,7 +1,9 @@
 import Hero from '../components/sections/Hero'
 import About from '../components/sections/About'
+import Journey from '../components/sections/Journey'
 import Skills from '../components/sections/Skills'
 import FeaturedProjects from '../components/sections/FeaturedProjects'
+import ContactMe from '../components/sections/ContactMe'
 import SEOHead from '../components/SEOHead'
 
 export default function Home() {
@@ -16,6 +18,8 @@ export default function Home() {
       <About />
       <Skills />
       <FeaturedProjects />
+      <Journey />
+      <ContactMe />
     </>
   )
 }

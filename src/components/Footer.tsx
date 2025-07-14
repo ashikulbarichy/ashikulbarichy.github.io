@@ -1,131 +1,131 @@
 import { Link } from 'react-router-dom'
-import { Code2, Github, Linkedin, Twitter, Mail, Rss } from 'lucide-react'
+import { Code2, Mail, MapPin, Phone, Github, Linkedin, Twitter, Rss } from 'lucide-react'
 
 const Footer = () => {
-  const socialLinks = [
-    {
-      icon: Github,
-      href: 'https://github.com/ashikulbarichy',
-      label: 'GitHub',
-      color: 'hover:text-gray-300'
-    },
-    {
-      icon: Linkedin,
-      href: 'https://linkedin.com/in/ashikulbarichy',
-      label: 'LinkedIn',
-      color: 'hover:text-blue-400'
-    },
-    {
-      icon: Twitter,
-      href: 'https://twitter.com/brownkid_sami',
-      label: 'Twitter',
-      color: 'hover:text-sky-400'
-    },
-    {
-      icon: Mail,
-      href: 'mailto:ashikul.chowdhury@proton.me',
-      label: 'Email',
-      color: 'hover:text-green-400'
-    },
-    {
-      icon: Rss,
-      href: 'https://ashikulbarichowdhury.medium.com/',
-      label: 'Blog',
-      color: 'hover:text-green-400'
-    }  
-  ]
-
-  
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="bg-black/20 border-t border-white/10">
-      <div className="container-width section-padding py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container-width section-padding py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-x-16 items-start">
           {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="sm:col-span-1 lg:col-span-1 flex flex-col items-start lg:pr-8 lg:border-r lg:border-white/10">
+            <div className="flex items-center space-x-2 mb-3 sm:mb-4">
               <div className="p-2 rounded-lg bg-primary/10">
-                <Code2 className="h-6 w-6 text-primary" />
+                <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
-              <span className="text-xl font-bold heading-gradient">Ashikul Bari Chowdhury</span>
+              <span className="text-lg sm:text-xl font-bold heading-gradient text-white">Ashikul Bari Chowdhury</span>
             </div>
-            <p className="text-gray-400 max-w-md">
+            <p className="text-sm sm:text-base text-white max-w-md leading-relaxed">
               ASP.NET developer and project manager passionate about creating 
-              exceptional digital experiences and leading high-performing teams.
+              exceptional technical products and leading high-performing teams.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+          <div className="flex flex-col items-start">
+            <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-primary transition-colors">
+                <Link to="/" className="text-white hover:text-pink-400 transition-colors text-sm sm:text-base">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-primary transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" className="text-gray-400 hover:text-primary transition-colors">
+                <Link
+                  to="/projects"
+                  className="text-white hover:text-pink-400 transition-colors text-sm sm:text-base"
+                  onClick={() => {
+                    // Let navigation happen, then scroll to top
+                    setTimeout(() => {
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }, 0);
+                  }}
+                >
                   Projects
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Social Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Follow Me</h3>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 ${social.color} transition-all duration-300 hover:scale-110 hover:bg-white/10`}
-                    aria-label={social.label}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Let's Connect</h3>
+          {/* Contact Info */}
+          <div className="flex flex-col items-start">
+            <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Contact</h3>
             <ul className="space-y-2">
-              <li>
-                <a
-                  href="mailto:ashikul.chowdhury@proton.me"
-                  className="text-gray-400 hover:text-primary transition-colors"
-                >
-                  ashikul.chowdhury@proton.me
-                </a>
+              <li className="flex items-center space-x-2 text-white">
+                <Mail className="h-4 w-4 text-primary" />
+                <span className="text-sm sm:text-base">ashikul.chowdhury@proton.me</span>
               </li>
-              <li>
-                <span className="text-gray-400">Dhaka, Bangladesh</span>
+              <li className="flex items-center space-x-2 text-white">
+                <MapPin className="h-4 w-4 text-primary" />
+                <span className="text-sm sm:text-base">Dhaka, Bangladesh</span>
               </li>
-              <li>
-                <span className="text-gray-400">Available for new opportunities</span>
+              <li className="flex items-center space-x-2 text-white">
+                <Phone className="h-4 w-4 text-primary" />
+                <span className="text-sm sm:text-base">+880-170-6543773</span>
               </li>
             </ul>
           </div>
-        </div>
 
-        <div className="border-t border-white/10 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} Ashikul Bari Chowdhury. All rights reserved.
+          {/* Social Links */}
+          <div className="flex flex-col items-start w-full">
+            <h3 className="text-white font-semibold text-sm sm:text-base mb-2">Connect</h3>
+            <div className="flex flex-row items-center space-x-3 pt-1 pb-2">
+              <a
+                href="https://github.com/ashikulbarichy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5 text-white group-hover:text-pink-400 transition-colors" />
+              </a>
+              <a
+                href="https://linkedin.com/in/ashikulbarichy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5 text-white group-hover:text-blue-400 transition-colors" />
+              </a>
+              <a
+                href="https://twitter.com/brownkid_sami"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-5 w-5 text-white group-hover:text-sky-400 transition-colors" />
+              </a>
+              <a
+                href="mailto:ashikul.chowdhury@proton.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5 text-white group-hover:text-green-400 transition-colors" />
+              </a>
+              <a
+                href="https://ashikulbarichowdhury.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
+                aria-label="Blog"
+              >
+                <Rss className="h-5 w-5 text-white group-hover:text-orange-400 transition-colors" />
+              </a>
+            </div>
+          </div>
+
+        {/* Copyright */}
+        <div className="border-t border-white/10 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
+          <p className="text-sm text-white">
+            © {currentYear} Ashikul Bari Chowdhury. All rights reserved.
           </p>
         </div>
+      </div>
       </div>
     </footer>
   )

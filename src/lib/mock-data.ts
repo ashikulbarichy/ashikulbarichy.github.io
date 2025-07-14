@@ -2,50 +2,17 @@
 export interface Project {
   id: number;
   title: string;
-  slug: string;
   description: string;
   image: string;
   tags: string[];
   category: string;
   date: string;
-  team: string;
   duration: string;
   features: string[];
   githubUrl: string;
-  demoUrl: string;
-  createdAt: string;
-  updatedAt: string;
-  type: 'application' | 'case-study'; // New property for project type
-}
-
-export interface ContactMessage {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  subject: string;
-  message: string;
-  createdAt: string;
-  status: 'new' | 'read' | 'replied';
-}
-
-export interface Testimonial {
-  id: number;
-  name: string;
-  role: string;
-  company: string;
-  message: string;
-  avatar: string;
-  rating: number;
-}
-
-export interface Skill {
-  id: number;
-  name: string;
-  category: 'development' | 'management' | 'tools' | 'research';
-  level: number; // 1-100
-  description: string;
-  icon: string;
+  projectUrl: string;
+  isLive: boolean;
+  type: 'application' | 'case-study' | 'research';
 }
 
 // Mock Projects Data
@@ -53,13 +20,11 @@ export const mockProjects: Project[] = [
   {
     id: 1,
     title: 'AI Powered Intellegent evaluation and feedback system',
-    slug: 'edTech solution',
-    description: 'A comprehensive e-commerce solution with advanced analytics, inventory management, and multi-vendor support. Built for scalability and performance with modern technologies.',
+    description: 'We want to make it easier and accessible for teachers to evaluate students and provide feedback. We are currently working on a project to evaluate students based on their performance and provide feedback using detailed analytics.',
     image: 'https://api.ajackus.com/wp-content/uploads/2022/01/AI-Powered-technologies-transformation-2022.png',
-    tags: ['React', 'TypeScript', 'SQLite', 'ASP.NET', 'EF Core', 'Docker'],
+    tags: ['React', 'TypeScript', 'SQLite', 'ASP.NET', 'EF Core', 'Docker', 'AI'],
     category: 'EdTech',
     date: 'July 2025',
-    team: '2 developers',
     duration: '3 months',
     features: [
       'Auto Evaluation system with AI',
@@ -67,111 +32,27 @@ export const mockProjects: Project[] = [
       'Student & Course performance tracking and analytics',
     ],
     githubUrl: 'https://github.com/ashikul/ecommerce-platform',
-    demoUrl: 'https://ecommerce-demo.ashikulbari.dev',
-    createdAt: '2024-07-01T00:00:00Z',
-    updatedAt: '2024-11-01T00:00:00Z',
+    projectUrl: 'https://ai-eval-demo.com',
+    isLive: true,
     type: 'application'
   },
   {
     id: 2,
-    title: 'Healthcare Management System',
-    slug: 'healthcare-management-system',
-    description: 'Digital healthcare platform with patient records, appointment scheduling, and telemedicine capabilities. HIPAA compliant and secure.',
+    title: 'Quantum ML Research',
+    description: 'We want to conduct research on how quantum machine learning can be used to solve real world problems in medical domain. We are currently working on a project to identify early stage kidney stone using quantum machine learning.',
     image: 'https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=600',
-    tags: ['Angular', 'ASP.NET Core', 'PostgreSQL', 'Azure', 'SignalR'],
+    tags: ['QISKIT', 'IBM', 'Python', 'CV'],
     category: 'Healthcare',
     date: 'Mar 2024',
-    team: '10 members',
-    duration: '8 months',
+    duration: '5 months',
     features: [
-      'Electronic health records (EHR)',
-      'Appointment scheduling system',
-      'Telemedicine video consultations',
-      'Prescription management',
-      'Insurance claim processing',
-      'HIPAA compliance and security'
+      'Ultrasound Image Analysis',
+      'No stone or stone prediction',
     ],
     githubUrl: 'https://github.com/ashikul/healthcare-system',
-    demoUrl: 'https://healthcare-demo.ashikulbari.dev',
-    createdAt: '2023-07-01T00:00:00Z',
-    updatedAt: '2024-03-01T00:00:00Z',
-    type: 'case-study'
-  }
-];
-
-// Mock Testimonials Data
-export const mockTestimonials: Testimonial[] = [
-  {
-    id: 1,
-    name: 'Sarah Johnson',
-    role: 'CTO',
-    company: 'TechStart Inc.',
-    message: 'Ashikul delivered an exceptional e-commerce platform that exceeded our expectations. His technical expertise and project management skills are outstanding.',
-    avatar: 'https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=150',
-    rating: 5
-  },
-  {
-    id: 2,
-    name: 'Michael Chen',
-    role: 'Product Manager',
-    company: 'InnovateWeb Solutions',
-    message: 'Working with Ashikul was a game-changer for our project. His ability to lead teams and deliver quality solutions on time is remarkable.',
-    avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150',
-    rating: 5
-  },
-  {
-    id: 3,
-    name: 'Emily Rodriguez',
-    role: 'Founder',
-    company: 'HealthTech Solutions',
-    message: 'The healthcare management system Ashikul built for us has transformed our operations. His attention to detail and security compliance is impressive.',
-    avatar: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=150',
-    rating: 5
-  }
-];
-
-// Mock Skills Data
-export const mockSkills: Skill[] = [
-  // Development Skills
-  { id: 1, name: 'ASP.NET Core', category: 'development', level: 95, description: 'Enterprise web applications', icon: 'code' },
-  { id: 2, name: 'Angular', category: 'development', level: 90, description: 'Dynamic web interfaces', icon: 'code' },
-  { id: 3, name: 'Python', category: 'development', level: 85, description: 'Backend development & automation', icon: 'code' },
-  { id: 4, name: 'PostgreSQL', category: 'development', level: 88, description: 'Relational database management', icon: 'database' },
-  { id: 5, name: 'MongoDB', category: 'development', level: 82, description: 'NoSQL database solutions', icon: 'database' },
-  
-  // Management Skills
-  { id: 6, name: 'Agile/Scrum', category: 'management', level: 92, description: 'Iterative project delivery', icon: 'zap' },
-  { id: 7, name: 'Team Leadership', category: 'management', level: 88, description: 'Cross-functional team management', icon: 'users' },
-  { id: 8, name: 'Strategic Planning', category: 'management', level: 85, description: 'Long-term project roadmaps', icon: 'target' },
-  { id: 9, name: 'Risk Management', category: 'management', level: 80, description: 'Project risk assessment', icon: 'shield' },
-  
-  // Tools
-  { id: 10, name: 'Docker', category: 'tools', level: 85, description: 'Containerization & deployment', icon: 'container' },
-  { id: 11, name: 'AWS/Cloud', category: 'tools', level: 82, description: 'Cloud infrastructure & services', icon: 'cloud' },
-  { id: 12, name: 'Git/GitHub', category: 'tools', level: 90, description: 'Version control & collaboration', icon: 'git-branch' }
-];
-
-// Mock Contact Messages (for demonstration)
-export const mockContactMessages: ContactMessage[] = [
-  {
-    id: 1,
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
-    subject: 'Project Collaboration',
-    message: 'Hi Ashikul, I would like to discuss a potential project collaboration. We are looking for a full-stack developer with project management experience.',
-    createdAt: '2024-01-15T10:30:00Z',
-    status: 'new'
-  },
-  {
-    id: 2,
-    firstName: 'Jane',
-    lastName: 'Smith',
-    email: 'jane.smith@techcorp.com',
-    subject: 'Consulting Opportunity',
-    message: 'We are interested in your consulting services for our upcoming e-commerce project. Could we schedule a call to discuss the requirements?',
-    createdAt: '2024-01-14T14:20:00Z',
-    status: 'read'
+    projectUrl: '',
+    isLive: false,
+    type: 'research'
   }
 ];
 
@@ -219,10 +100,6 @@ export const getProjectById = (id: number): Project | undefined => {
   return mockProjects.find(project => project.id === id);
 };
 
-export const getProjectBySlug = (slug: string): Project | undefined => {
-  return mockProjects.find(project => project.slug === slug);
-};
-
 export const getProjectCategories = (): string[] => {
   const categories = [...new Set(mockProjects.map(project => project.category))];
   return categories.sort();
@@ -240,73 +117,5 @@ export const getProjectStats = () => {
     categories: categoryStats,
     totalTechnologies: [...new Set(mockProjects.flatMap(project => project.tags))].length,
     averageDuration: '4.5 months',
-    totalTeamMembers: mockProjects.reduce((sum, project) => {
-      const teamSize = parseInt(project.team.split(' ')[0]) || 0;
-      return sum + teamSize;
-    }, 0)
-  };
-};
-
-// Helper functions for testimonials
-export const getTestimonials = (limit?: number) => {
-  const testimonials = limit ? mockTestimonials.slice(0, limit) : mockTestimonials;
-  return {
-    testimonials,
-    total: mockTestimonials.length
-  };
-};
-
-// Helper functions for skills
-export const getSkills = (category?: 'development' | 'management' | 'tools') => {
-  const skills = category 
-    ? mockSkills.filter(skill => skill.category === category)
-    : mockSkills;
-  
-  return {
-    skills,
-    total: skills.length
-  };
-};
-
-// Helper functions for contact messages
-export const getContactMessages = (status?: 'new' | 'read' | 'replied') => {
-  const messages = status 
-    ? mockContactMessages.filter(message => message.status === status)
-    : mockContactMessages;
-  
-  return {
-    messages,
-    total: messages.length
-  };
-};
-
-// Simulate API delay for realistic loading states
-export const simulateApiDelay = (ms: number = 500) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
-
-// Mock form submission handler
-export const submitContactForm = async (formData: {
-  firstName: string;
-  lastName: string;
-  email: string;
-  subject: string;
-  message: string;
-}) => {
-  await simulateApiDelay(1000); // Simulate network delay
-  
-  const newMessage: ContactMessage = {
-    id: mockContactMessages.length + 1,
-    ...formData,
-    createdAt: new Date().toISOString(),
-    status: 'new'
-  };
-  
-  mockContactMessages.push(newMessage);
-  
-  return {
-    success: true,
-    message: 'Thank you for your message! I will get back to you soon.',
-    data: newMessage
   };
 };
