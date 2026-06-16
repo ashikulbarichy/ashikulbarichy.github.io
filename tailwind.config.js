@@ -9,6 +9,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'garamond': ['EB Garamond', 'serif'],
+        'inter': ['Inter', 'sans-serif'],
+        'mono': ['IBM Plex Mono', 'monospace'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -53,6 +58,14 @@ export default {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        // Redesigned Color Theme - Matte Black & High Contrast White
+        navy: '#000000',           // Matte Black Background
+        charcoal: '#0e0e0e',       // Surface Level 2 (Dark Gray)
+        steel: '#222222',          // Borders
+        'light-gray': '#ffffff',   // Primary Text
+        slate: '#888888',          // Secondary Text
+        gold: '#ffffff',           // Accent color (Pure White)
+        'gold-light': '#d4d4d8',   // Accent Hover (Zinc-300)
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',

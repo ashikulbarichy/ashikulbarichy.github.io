@@ -21,11 +21,11 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Path mapping */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
+  "exclude": ["studio"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

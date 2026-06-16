@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Home, ArrowLeft } from 'lucide-react'
 
 export default function NotFound() {
-  const goBack = () => {
-    window.history.back()
-  }
+  const navigate = useNavigate()
+  const goBack = () => navigate(-1)
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">

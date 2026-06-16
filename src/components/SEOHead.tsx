@@ -7,64 +7,96 @@ interface SEOHeadProps {
   keywords?: string;
   image?: string;
   url?: string;
+  type?: 'website' | 'profile' | 'article';
+  structuredData?: Record<string, unknown> | null;
 }
 
-const SEOHead = ({ 
-  title = "Ashikul Bari Chowdhury - ASP.NET Developer & Project Manager",
-  description = "ASP.NET developer and project manager specializing in React, ASP.NET, Python, and modern web applications. Passionate abouteading teams and delivering scalable solutions.",
-  keywords = "Ashikul Bari Chowdhury, backend developer, project manager, React developer, ASP.NET developer, Python developer, web development, software engineer, team lead, Dhaka Bangladesh",
-  image = "https://ashikulbari.me/Ashikul_Bari_CV.png",
-  url
+const BASE_URL = 'https://ashikulbari.com';
+const DEFAULT_IMAGE = `${BASE_URL}/img/profile_image.webp`;
+
+const SEOHead = ({
+  title = 'Ashikul Bari Chowdhury | Cyber Security Analyst & GRC Specialist | Melbourne, Australia',
+  description = 'Cyber Security Analyst and GRC Specialist pursuing a Master of Cyber Security at La Trobe University, Melbourne, Australia. Seeking GRC Analyst, SOC Analyst, and Cybersecurity roles in Melbourne and across Australia. Expert in Python, ASP.NET Core, React, and risk frameworks.',
+  keywords = 'Ashikul Bari Chowdhury, cyber security analyst Melbourne, GRC specialist Australia, governance risk compliance Melbourne, La Trobe University cyber security, SOC analyst Melbourne, information security analyst Victoria, risk analyst Australia, compliance analyst Melbourne, cybersecurity graduate Melbourne, Python developer, ASP.NET developer, full stack developer, project manager, software engineer, Dhaka Bangladesh',
+  image = DEFAULT_IMAGE,
+  url,
+  type = 'profile',
+  structuredData = null,
 }: SEOHeadProps) => {
   const location = useLocation();
-  const currentUrl = url || `https://ashikulbari.me${location.pathname}`;
+  const currentUrl = url || `${BASE_URL}${location.pathname}`;
 
   useEffect(() => {
-    // Update document title
-    document.title = title;
+    // ── Title ────────────────────────────────────────────────
+    document.title = 'ashikul bari';
 
-    // Update meta tags
-    const updateMetaTag = (name: string, content: string, property = false) => {
-      const attribute = property ? 'property' : 'name';
-      let element = document.querySelector(`meta[${attribute}="${name}"]`);
-      
-      if (element) {
-        element.setAttribute('content', content);
+    // ── Helper ───────────────────────────────────────────────
+    const setMeta = (selector: string, content: string) => {
+      let el = document.querySelector<HTMLMetaElement>(selector);
+      if (el) {
+        el.setAttribute('content', content);
       } else {
-        element = document.createElement('meta');
-        element.setAttribute(attribute, name);
-        element.setAttribute('content', content);
-        document.head.appendChild(element);
+        el = document.createElement('meta');
+        // Detect property vs name from selector
+        if (selector.includes('property=')) {
+          el.setAttribute('property', selector.match(/property="([^"]+)"/)?.[1] ?? '');
+        } else {
+          el.setAttribute('name', selector.match(/name="([^"]+)"/)?.[1] ?? '');
+        }
+        el.setAttribute('content', content);
+        document.head.appendChild(el);
       }
     };
 
-    // Update basic meta tags
-    updateMetaTag('description', description);
-    updateMetaTag('keywords', keywords);
+    const setLink = (rel: string, href: string) => {
+      let el = document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+      if (el) {
+        el.setAttribute('href', href);
+      } else {
+        el = document.createElement('link');
+        el.setAttribute('rel', rel);
+        el.setAttribute('href', href);
+        document.head.appendChild(el);
+      }
+    };
 
-    // Update Open Graph tags
-    updateMetaTag('og:title', title, true);
-    updateMetaTag('og:description', description, true);
-    updateMetaTag('og:image', image, true);
-    updateMetaTag('og:url', currentUrl, true);
+    const setJsonLd = (id: string, data: Record<string, unknown>) => {
+      let el = document.querySelector<HTMLScriptElement>(`script[type="application/ld+json"][data-id="${id}"]`);
+      if (!el) {
+        el = document.createElement('script');
+        el.setAttribute('type', 'application/ld+json');
+        el.setAttribute('data-id', id);
+        document.head.appendChild(el);
+      }
+      el.textContent = JSON.stringify(data, null, 2);
+    };
 
-    // Update Twitter tags
-    updateMetaTag('twitter:title', title, true);
-    updateMetaTag('twitter:description', description, true);
-    updateMetaTag('twitter:image', image, true);
-    updateMetaTag('twitter:url', currentUrl, true);
+    // ── Basic Meta ───────────────────────────────────────────
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[name="keywords"]', keywords);
 
-    // Update canonical link
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (canonicalLink) {
-      canonicalLink.setAttribute('href', currentUrl);
-    } else {
-      canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      canonicalLink.setAttribute('href', currentUrl);
-      document.head.appendChild(canonicalLink);
+    // ── Open Graph ───────────────────────────────────────────
+    setMeta('meta[property="og:type"]', type);
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[property="og:image"]', image);
+    setMeta('meta[property="og:url"]', currentUrl);
+
+    // ── Twitter ──────────────────────────────────────────────
+    setMeta('meta[property="twitter:title"]', title);
+    setMeta('meta[property="twitter:description"]', description);
+    setMeta('meta[property="twitter:image"]', image);
+    setMeta('meta[property="twitter:url"]', currentUrl);
+
+    // ── Canonical ────────────────────────────────────────────
+    setLink('canonical', currentUrl);
+
+    // ── Inject per-page structured data ──────────────────────
+    if (structuredData) {
+      setJsonLd('page-specific', structuredData);
     }
-  }, [title, description, keywords, image, currentUrl]);
+
+  }, [title, description, keywords, image, currentUrl, type, structuredData]);
 
   return null;
 };

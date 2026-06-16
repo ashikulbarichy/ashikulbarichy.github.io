@@ -3,33 +3,68 @@
 @tailwind utilities;
 
 :root {
+  /* ============================================
+     UNIVERSAL COLOR THEME - Dark Theme
+     Technical Aesthetic (Based on Design System)
+     ============================================
+     
+     Backgrounds & Surfaces:
+     - Navy (#1A3D5C): Main Background
+     - Charcoal (#2D2D2D): Surface Level 2 (Cards, Elevated Surfaces)
+     - Steel (#4A4A4A): Borders (Thin Steel)
+     
+     Typography & Content:
+     - Light Gray (#E0E0E0): Primary Text
+     - Slate (#A0A0A0): Secondary Text
+     - Gold (#B8860B): Monospace Accents, Code Blocks
+     
+     Interactive Accents:
+     - Gold (#B8860B): Primary Buttons, Icons, Links, Active States
+     - Gold Light (#D4AF37): Hover States, Lighter Gold Accent
+     
+     Usage in Tailwind:
+     - bg-navy, bg-charcoal, bg-steel
+     - text-light-gray, text-slate, text-gold
+     - border-steel, border-gold
+     - hover:text-gold, hover:bg-gold
+     ============================================ */
+  
+  /* CSS Variables for HSL Color System */
+  --navy: 0 0% 0%; /* #000000 - Matte Black Background */
+  --charcoal: 0 0% 6%; /* #0e0e0e - Surface Level 2 */
+  --steel: 0 0% 13%; /* #222222 - Borders */
+  --light-gray: 0 0% 100%; /* #ffffff - Primary Text */
+  --slate: 0 0% 53%; /* #888888 - Secondary Text */
+  --gold: 0 0% 100%; /* #ffffff - White Accent */
+  --gold-light: 0 0% 83%; /* #d4d4d8 - Light Gray Hover */
+  
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 32, 0, 44;
-  --background-end-rgb: 16, 0, 32;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 @layer base {
   :root {
-    --background: 270 60% 8%; /* deep purple */
-    --foreground: 270 40% 98%;
-    --card: 270 60% 8%;
-    --card-foreground: 270 40% 98%;
-    --popover: 270 60% 8%;
-    --popover-foreground: 270 40% 98%;
-    --primary: 265 91% 70%; /* purple */
-    --primary-foreground: 270 60% 8%;
-    --secondary: 285 80% 60%; /* lighter purple */
-    --secondary-foreground: 270 40% 98%;
-    --muted: 270 32% 17%;
-    --muted-foreground: 270 20% 65%;
-    --accent: 285 60% 40%;
-    --accent-foreground: 270 40% 98%;
+    --background: var(--navy);
+    --foreground: var(--light-gray);
+    --card: var(--charcoal);
+    --card-foreground: var(--light-gray);
+    --popover: var(--charcoal);
+    --popover-foreground: var(--light-gray);
+    --primary: var(--gold);
+    --primary-foreground: var(--navy);
+    --secondary: var(--slate);
+    --secondary-foreground: var(--light-gray);
+    --muted: var(--charcoal);
+    --muted-foreground: var(--slate);
+    --accent: var(--gold);
+    --accent-foreground: var(--navy);
     --destructive: 340 82% 52%;
     --destructive-foreground: 270 40% 98%;
-    --border: 270 32% 17%;
-    --input: 270 32% 17%;
-    --ring: 270 80% 90%;
-    --radius: 0.5rem;
+    --border: var(--steel);
+    --input: var(--charcoal);
+    --ring: var(--gold);
+    --radius: 0.25rem;
   }
 }
 
@@ -38,8 +73,38 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(135deg, #2a003c 0%, #3a185a 100%);
+    @apply bg-background text-foreground font-inter;
+    background: #000000;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffffff;
+  }
+  
+  /* EB Garamond - Headlines */
+  h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(48px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: #ffffff;
+  }
+  
+  h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(32px, 3.5vw, 40px);
+    font-weight: 400;
+    text-transform: none;
+    color: #ffffff;
+  }
+  
+  /* Inter - Body and Navigation */
+  p, body {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(16px, 1.1vw, 18px);
+    line-height: 1.6;
+    font-weight: 400;
+    color: #888888; /* Muted slate for body text */
   }
 }
 
@@ -53,11 +118,13 @@
   }
   
   .heading-gradient {
-    @apply text-white;
+    color: #E0E0E0; /* Light Gray - Primary Text */
   }
   
   .glass-effect {
-    @apply bg-white/5 backdrop-blur-sm border border-gray-600;
+    @apply backdrop-blur-sm;
+    background: rgba(45, 45, 45, 0.6); /* Charcoal with transparency */
+    border: 1px solid #4A4A4A; /* Thin Steel border */
   }
   
   .hover-lift {
@@ -65,8 +132,10 @@
   }
 
   .btn-primary {
-    @apply relative overflow-hidden px-6 py-3 md:px-8 md:py-4 border-2 border-purple-300 text-white rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(168, 85, 247, 0.2) 100%);
+    @apply relative overflow-hidden px-4 py-2 rounded-full font-medium transition-all duration-300;
+    background: #B8860B; /* Gold */
+    color: #1A3D5C; /* Navy text */
+    border: 1px solid #B8860B;
     transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
   .btn-primary::before {
@@ -76,17 +145,17 @@
   .btn-primary span {
     @apply relative z-10 transition-colors duration-300;
   }
-  .btn-primary:hover span {
-    @apply text-white;
-  }
   .btn-primary:hover {
-    background: #4c1d95;
-    color: #fff;
-    border-color: #7c3aed;
+    background: #D4AF37; /* Lighter Gold on hover */
+    color: #1A3D5C;
+    border-color: #D4AF37;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
   }
   .btn-primary-small {
-    @apply relative overflow-hidden px-3 py-2 md:px-4 md:py-2 border-2 border-purple-300 text-white rounded-full font-medium text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(168, 85, 247, 0.2) 100%);
+    @apply relative overflow-hidden px-3 py-1.5 rounded-full font-medium text-sm transition-all duration-300;
+    background: #B8860B; /* Gold */
+    color: #1A3D5C; /* Navy text */
+    border: 1px solid #B8860B;
     transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
   .btn-primary-small::before {
@@ -96,24 +165,24 @@
   .btn-primary-small span {
     @apply relative z-10 transition-colors duration-300;
   }
-  .btn-primary-small:hover span {
-    @apply text-white;
-  }
   .btn-primary-small:hover {
-    background: #4c1d95;
-    color: #fff;
-    border-color: #7c3aed;
+    background: #D4AF37; /* Lighter Gold on hover */
+    color: #1A3D5C;
+    border-color: #D4AF37;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
   }
 
   .btn-secondary {
-    @apply relative overflow-hidden px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-gray-600 text-gray-100 rounded-full font-medium transition-all duration-300 transform hover:scale-105;
+    @apply relative overflow-hidden px-4 py-2 bg-transparent rounded-full font-medium transition-all duration-300;
+    border: 1px solid #4A4A4A; /* Thin Steel */
+    color: #E0E0E0; /* Light Gray */
     transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
 
   .btn-secondary:hover {
-    background: #a1a1aa; /* Tailwind gray-400 */
-    color: #18181b; /* Tailwind gray-900 */
-    border-color: #a1a1aa;
+    background: #2D2D2D; /* Charcoal */
+    color: #E0E0E0;
+    border-color: #4A4A4A;
   }
   .btn-secondary::before {
     content: '';
@@ -124,15 +193,17 @@
   }
 
   .btn-secondary:hover span {
-    @apply text-gray-900;
+    color: #E0E0E0;
   }
 
   .card-trusted {
-    @apply bg-slate-900/40 backdrop-blur-sm border border-blue-400/20;
+    @apply backdrop-blur-sm;
+    background: rgba(45, 45, 45, 0.6); /* Charcoal with transparency */
+    border: 1px solid #4A4A4A; /* Thin Steel */
   }
 
   .trusted-gradient {
-    @apply bg-gradient-to-br from-slate-900/20 to-slate-800/20;
+    background: linear-gradient(135deg, rgba(26, 61, 92, 0.3) 0%, rgba(45, 45, 45, 0.3) 100%);
   }
 
   /* Responsive content spacing */
@@ -271,13 +342,98 @@
     @apply border-gray-600;
   }
   .text-body {
-    @apply text-gray-100;
+    color: #E0E0E0; /* Light Gray - Primary Text */
   }
   .text-secondary {
-    @apply text-gray-400;
+    color: #A0A0A0; /* Slate - Secondary Text */
   }
   .text-accent {
-    @apply text-pink-500;
+    color: #B8860B; /* Gold - Accent */
+  }
+
+  /* Typography System - EB Garamond Headlines */
+  .font-headline-primary {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(48px, 5vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+  
+  .font-headline-primary-regular {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(48px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+  
+  .font-headline-secondary {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(32px, 3.5vw, 40px);
+    font-weight: 500;
+    text-transform: none;
+  }
+
+  /* Typography System - Inter Interface */
+  .font-nav-label {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(14px, 1vw, 16px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  
+  .font-body {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(16px, 1.1vw, 18px);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* Typography System - IBM Plex Mono Technical */
+  .font-metadata {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: clamp(12px, 0.9vw, 14px);
+    font-weight: 400;
+    color: #B8860B; /* Gold */
+  }
+  
+  .font-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #2D2D2D; /* Charcoal Base */
+    color: #E0E0E0; /* Light Gray text */
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #4A4A4A; /* Thin Steel border */
+  }
+
+  /* Active Tab with Gold Underline */
+  .tab-active {
+    border-bottom: 2px solid #B8860B; /* Gold underline */
+    color: #E0E0E0;
+  }
+
+  /* Icon Gold Outline */
+  .icon-gold {
+    color: #B8860B;
+    stroke: #B8860B;
+  }
+
+  /* Social Icon Hover - Universal Gold */
+  .social-icon {
+    @apply text-light-gray transition-colors duration-300;
+  }
+  .social-icon:hover {
+    @apply text-gold;
+  }
+
+  /* Surface Level 2 - Charcoal */
+  .surface-level-2 {
+    background: #2D2D2D;
+    border: 1px solid #4A4A4A;
   }
 }
 
@@ -287,16 +443,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #27272a;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #60a5fa;
+  background: #3f3f46;
 }
 
 /* Optimized Animations */
@@ -358,6 +514,22 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* Page transition animation */
+.page-transition {
+  animation: pageFade 0.4s ease-out;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Optimized Flying Element Animations */
 @keyframes float-slow {
   0%, 100% {
@@ -412,7 +584,7 @@
 
 /* Interactive button effects */
 .btn-interactive {
-  @apply relative overflow-hidden transition-all duration-300 transform;
+  @apply relative overflow-hidden transition-all duration-300;
 }
 
 /* Remove the overlay effect */
@@ -495,10 +667,12 @@
 }
 
 /* Hide vertical scrollbar but keep scrolling functional */
+html,
 body {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
 }
+html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
@@ -654,7 +828,8 @@ body {
 .btn-primary:focus,
 .btn-secondary:focus,
 .btn-primary-small:focus {
-  @apply outline-none ring-2 ring-blue-400 ring-offset-2 ring-offset-slate-900;
+  @apply outline-none ring-2 ring-gold ring-offset-2;
+  --tw-ring-offset-color: #1A3D5C; /* Navy background */
 }
 
 /* High contrast mode support */
@@ -666,4 +841,21 @@ body {
   .card-trusted {
     @apply bg-black border-white;
   }
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }

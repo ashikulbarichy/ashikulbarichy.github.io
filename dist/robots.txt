@@ -1,18 +1,22 @@
+# ═══════════════════════════════════════════════════════════════
+# robots.txt — ashikulbari.com
+# Ashikul Bari Chowdhury | Cyber Security Analyst | Melbourne
+# Last updated: 2026-06-15
+# ═══════════════════════════════════════════════════════════════
+
+# Allow all well-behaved bots
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://ashikulbari.dev/sitemap.xml
-
-# Crawl-delay
 Crawl-delay: 1
 
-# Disallow admin or private areas (if any)
-# Disallow: /admin/
-# Disallow: /private/
+# ── SITEMAP ──────────────────────────────────────────────────
+Sitemap: https://ashikulbari.com/sitemap.xml
 
-# Allow all major search engines
+# ── TRADITIONAL SEARCH ENGINES ───────────────────────────────
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
@@ -37,4 +41,70 @@ User-agent: Twitterbot
 Allow: /
 
 User-agent: LinkedInBot
+Allow: /
+
+# ── AI / LLM CRAWLERS (Explicitly Allowed) ───────────────────
+# OpenAI — ChatGPT training & search
+User-agent: GPTBot
+Allow: /
+
+# OpenAI — ChatGPT browsing plugin
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic — Claude AI
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google — Gemini AI / AI Overviews (Google-Extended controls AI)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Common Crawl (training data for many LLMs)
+User-agent: CCBot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Apple — Siri and Spotlight
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon Alexa / Alexa Web Crawler
+User-agent: ia_archiver
+Allow: /
+
+# You.com AI search
+User-agent: YouBot
+Allow: /
+
+# Brave Search AI
+User-agent: Brave
+Allow: /
+
+# AI2 (Allen Institute for AI)
+User-agent: OmgiliBot
+Allow: /
+
+# Diffbot (AI knowledge graph)
+User-agent: Diffbot
 Allow: /

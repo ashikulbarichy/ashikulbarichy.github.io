@@ -1,0 +1,73 @@
+.loading-screen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+  background-color: #000000;
+}
+
+.loader-center-box {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.canvas-wrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.globe-canvas {
+  display: block;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-track {
+  background-color: #18181b; /* zinc-900 */
+}
+
+.progress-fill {
+  background-color: #ffffff;
+}
+
+/* Minimal Shutter Shaded Bypass Button */
+.bypass-button {
+  background: transparent;
+  color: #a1a1aa;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.5rem;
+  border-radius: 1px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+
+.bypass-button:hover:not(:disabled) {
+  color: #ffffff;
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bypass-button:disabled {
+  color: #3f3f46;
+  border-color: rgba(255, 255, 255, 0.03);
+  cursor: not-allowed;
+}

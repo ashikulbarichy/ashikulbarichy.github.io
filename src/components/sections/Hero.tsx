@@ -1,277 +1,394 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Download, ExternalLink, Sparkles, Code2, Zap, Star, Heart } from 'lucide-react';
-
-// Floating icon data
-const floatingIcons = [
-  { icon: Code2, color: 'text-purple-400/20', size: 40 },
-  { icon: Zap, color: 'text-fuchsia-400/20', size: 40 },
-  { icon: Star, color: 'text-purple-300/20', size: 40 },
-  { icon: Heart, color: 'text-fuchsia-300/20', size: 40 },
-  { icon: Sparkles, color: 'text-purple-400/15', size: 40 },
-  { icon: Code2, color: 'text-fuchsia-400/20', size: 40 },
-  { icon: Zap, color: 'text-purple-300/15', size: 36 },
-  { icon: Star, color: 'text-fuchsia-300/20', size: 36 },
-];
-
-type IconState = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-};
-
-const ICON_RADIUS = 24; // px, for collision
-const CONTAINER_PADDING = 20; // px, to avoid sticking to edges
-
-function getRandom(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
-}
-
-type FloatingIconProps = {
-  Icon: React.ElementType;
-  x: number;
-  y: number;
-  color: string;
-  size: number;
-};
-
-const FloatingIcon = ({ Icon, x, y, color, size }: FloatingIconProps) => (
-  <div
-    style={{
-      position: 'absolute',
-      left: x,
-      top: y,
-      pointerEvents: 'none',
-      zIndex: 1,
-      transition: 'none',
-    }}
-    className={color}
-  >
-    <Icon style={{ width: size, height: size }} />
-  </div>
-);
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Download, ExternalLink, Plus, Minus } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { getLandingData, defaultLandingData, getMenuData, defaultMenuData } from '../../data/landing-page';
+import type { LandingPageData, MenuData } from '../../types';
+import { useDataRefresh } from '../../hooks/useDataRefresh';
+import SecurityLogsBackground from './SecurityLogsBackground';
+import NavMenu from '../ui/NavMenu';
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const heroRef = useRef<HTMLDivElement | null>(null)
-  // Interactive gradient state
-  const [gradientPos, setGradientPos] = useState({ x: 50, y: 50 })
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [iconStates, setIconStates] = useState<IconState[]>([]);
+  const navigate  = useNavigate();
+  const location  = useLocation();
+  const refreshKey = useDataRefresh();
 
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
+  const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
+  const [mousePos,    setMousePos]    = useState({ x: 0, y: 0 });
+  const [isMenuOpen,  setIsMenuOpen]  = useState(false);
+  const [landingData, setLandingData] = useState<LandingPageData>(defaultLandingData);
+  const [menuData,    setMenuData]    = useState<MenuData>(defaultMenuData);
+  const [imageOffset, setImageOffset] = useState<number | null>(null);
 
+  const heroRef            = useRef<HTMLDivElement>(null);
+  const rightColRef        = useRef<HTMLDivElement>(null);
+  const certsContentRef    = useRef<HTMLDivElement>(null);
+  const skillsContentRef   = useRef<HTMLDivElement>(null);
+  const accordionsCtxRef   = useRef<gsap.Context | null>(null);
+  const isAccordionInitial = useRef(true);
+  const textRef            = useRef<HTMLHeadingElement>(null);
+  const cardContainerRef   = useRef<HTMLDivElement>(null);
+
+  // ── Data fetching ──────────────────────────────────────────────────────────
   useEffect(() => {
-    const observer = new window.IntersectionObserver(
-      () => {
-        // No-op, removed unused entry
-      },
-      { threshold: 0.2 }
-    )
-    if (heroRef.current) {
-      observer.observe(heroRef.current)
-    }
+    let alive = true;
+    getLandingData().then((data) => { if (alive) setLandingData(data); });
+    getMenuData().then((data)    => { if (alive) setMenuData(data); });
+    return () => { alive = false; };
+  }, [refreshKey]);
+
+  // ── Image alignment ────────────────────────────────────────────────────────
+  useEffect(() => {
+    const adjustAlignment = () => {
+      if (window.innerWidth >= 768 && textRef.current && heroRef.current && cardContainerRef.current) {
+        const getOffsetTopRelativeTo = (el: HTMLElement, ancestor: HTMLElement): number => {
+          let top = 0;
+          let current: HTMLElement | null = el;
+          while (current && current !== ancestor) {
+            top += current.offsetTop;
+            current = current.offsetParent as HTMLElement | null;
+          }
+          return top;
+        };
+
+        const textTop      = getOffsetTopRelativeTo(textRef.current, heroRef.current);
+        const containerTop = getOffsetTopRelativeTo(cardContainerRef.current, heroRef.current);
+        const paddingTop   = parseFloat(window.getComputedStyle(cardContainerRef.current).paddingTop) || 0;
+        setImageOffset(Math.max(0, textTop - 20 - containerTop - paddingTop));
+      } else {
+        setImageOffset(null);
+      }
+    };
+
+    adjustAlignment();
+    window.addEventListener('resize', adjustAlignment);
+    const t1 = setTimeout(adjustAlignment, 100);
+    const t2 = setTimeout(adjustAlignment, 1000);
+    const t3 = setTimeout(adjustAlignment, 2500);
+
     return () => {
-      if (heroRef.current) observer.unobserve(heroRef.current)
-    }
-  }, [])
+      window.removeEventListener('resize', adjustAlignment);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [landingData, activeAccordion]);
 
-  // Mouse move handler for interactive gradient
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setGradientPos({ x, y });
-  };
-
-  // Initialize icon positions and velocities
+  // ── Hero entrance animation ────────────────────────────────────────────────
   useEffect(() => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const initialStates: IconState[] = floatingIcons.map(() => ({
-      x: getRandom(CONTAINER_PADDING, width - CONTAINER_PADDING - ICON_RADIUS * 2),
-      y: getRandom(CONTAINER_PADDING, height - CONTAINER_PADDING - ICON_RADIUS * 2),
-      vx: getRandom(-0.7, 0.7),
-      vy: getRandom(-0.7, 0.7),
-    }));
-    setIconStates(initialStates);
-    // eslint-disable-next-line
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ delay: 1.2 });
+      tl.fromTo('.hero-left-fade-stagger',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15 },
+      );
+      tl.fromTo('.hero-right-fade-stagger',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15 },
+        '-=0.6',
+      );
+    }, heroRef);
+    return () => ctx.revert();
   }, []);
 
-  // Animation loop for movement and collision
+  // ── Accordion GSAP context ─────────────────────────────────────────────────
   useEffect(() => {
-    let animationId: number;
-    function animate() {
-      setIconStates((prev: IconState[]) => {
-        if (!containerRef.current) return prev;
-        const rect = containerRef.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        let next = prev.map((icon) => {
-          let { x, y, vx, vy } = icon;
-          x += vx;
-          y += vy;
-          // Bounce off edges
-          if (x < CONTAINER_PADDING) { x = CONTAINER_PADDING; vx = -vx; }
-          if (y < CONTAINER_PADDING) { y = CONTAINER_PADDING; vy = -vy; }
-          if (x > width - ICON_RADIUS * 2 - CONTAINER_PADDING) { x = width - ICON_RADIUS * 2 - CONTAINER_PADDING; vx = -vx; }
-          if (y > height - ICON_RADIUS * 2 - CONTAINER_PADDING) { y = height - ICON_RADIUS * 2 - CONTAINER_PADDING; vy = -vy; }
-          return { x, y, vx, vy };
-        });
-        // Collision detection and response
-        for (let i = 0; i < next.length; i++) {
-          for (let j = i + 1; j < next.length; j++) {
-            const dx = next[i].x - next[j].x;
-            const dy = next[i].y - next[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < ICON_RADIUS * 2) {
-              // Simple elastic collision: swap velocities
-              const tempVx = next[i].vx;
-              const tempVy = next[i].vy;
-              next[i].vx = next[j].vx;
-              next[i].vy = next[j].vy;
-              next[j].vx = tempVx;
-              next[j].vy = tempVy;
-              // Move them apart
-              const overlap = ICON_RADIUS * 2 - dist;
-              const angle = Math.atan2(dy, dx);
-              next[i].x += Math.cos(angle) * (overlap / 2);
-              next[i].y += Math.sin(angle) * (overlap / 2);
-              next[j].x -= Math.cos(angle) * (overlap / 2);
-              next[j].y -= Math.sin(angle) * (overlap / 2);
-            }
-          }
-        }
-        return next;
-      });
-      animationId = requestAnimationFrame(animate);
+    accordionsCtxRef.current = gsap.context(() => {});
+    return () => { accordionsCtxRef.current?.revert(); };
+  }, []);
+
+  // ── Accordion animations ───────────────────────────────────────────────────
+  useEffect(() => {
+    if (!accordionsCtxRef.current) return;
+    if (isAccordionInitial.current) {
+      isAccordionInitial.current = false;
+      return;
     }
-    if (iconStates.length === floatingIcons.length) {
-      animationId = requestAnimationFrame(animate);
+
+    const certsEl  = certsContentRef.current;
+    const skillsEl = skillsContentRef.current;
+
+    accordionsCtxRef.current.add(() => {
+      gsap.killTweensOf([certsEl, skillsEl, '.cert-item', '.skill-badge']);
+
+      if (activeAccordion === 'certifications') {
+        gsap.to(skillsEl, { height: 0, opacity: 0, duration: 0.35, ease: 'power3.inOut' });
+        gsap.to(certsEl,  { height: 'auto', opacity: 1, duration: 0.5, ease: 'power3.out' });
+        gsap.fromTo('.cert-item',
+          { x: -20, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.4, ease: 'power2.out', stagger: 0.1, delay: 0.1 },
+        );
+      } else if (activeAccordion === 'skills') {
+        gsap.to(certsEl,  { height: 0, opacity: 0, duration: 0.35, ease: 'power3.inOut' });
+        gsap.to(skillsEl, { height: 'auto', opacity: 1, duration: 0.5, ease: 'power3.out' });
+        gsap.fromTo('.skill-badge',
+          { scale: 0.8, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.5)', stagger: 0.04, delay: 0.1 },
+        );
+      } else {
+        gsap.to([certsEl, skillsEl], { height: 0, opacity: 0, duration: 0.4, ease: 'power3.inOut' });
+      }
+    });
+  }, [activeAccordion]);
+
+  // ── Handlers ──────────────────────────────────────────────────────────────
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+
+    if (href === '#') {
+      if (location.pathname !== '/') {
+        navigate('/');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
     }
-    return () => cancelAnimationFrame(animationId);
-    // eslint-disable-next-line
-  }, [iconStates.length]);
+
+    if (href === '#featured-projects' || href === '/projects' || href === '#projects') {
+      navigate('/projects');
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate('/' + href);
+      return;
+    }
+
+    const element = document.querySelector(href);
+    if (element) {
+      setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), 300);
+    }
+  }, [location.pathname, navigate]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (rightColRef.current) {
+      const rect = rightColRef.current.getBoundingClientRect();
+      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (rightColRef.current && e.touches[0]) {
+      const rect = rightColRef.current.getBoundingClientRect();
+      setMousePos({ x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top });
+    }
+  };
+
+  const toggleAccordion = (id: string) =>
+    setActiveAccordion((prev) => (prev === id ? null : id));
 
   const scrollToProjects = () => {
-    const projectsSection = document.querySelector('#featured-projects')
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+    document.querySelector('#featured-projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const downloadCV = () => {
-    const link = document.createElement('a')
-    link.href = 'https://www.dropbox.com/scl/fi/mi6xs19gw2xd7axkzsrxn/ashikul-bari-cv.pdf?rlkey=0l4xas6blt87hsbujvwl1ggkg&st=mc03tqr4&dl=1'
-    link.download = '/ashikul-bari-cv.pdf'
-    link.click()
-  }
-
-  // Removed unused handleGetInTouch function
+    const link = document.createElement('a');
+    link.href   = landingData.cvUrl || 'https://www.dropbox.com/scl/fi/mi6xs19gw2xd7axkzsrxn/ashikul-bari-cv.pdf?rlkey=0l4xas6blt87hsbujvwl1ggkg&st=mc03tqr4&dl=1';
+    link.target = '_blank';
+    link.rel    = 'noopener noreferrer';
+    link.click();
+  };
 
   return (
-    <section
-      ref={heroRef}
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden section-container"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Interactive Gradient Element */}
-      <div
-        className="pointer-events-none select-none absolute inset-0 z-0 transition-all duration-300"
-        style={{
-          background: `radial-gradient(600px at ${gradientPos.x}% ${gradientPos.y}%, rgba(139,92,246,0.25) 0%, rgba(168,85,247,0.18) 50%, transparent 100%)`,
-        }}
-        aria-hidden="true"
-      />
-      {/* Floating Icons with Collision Detection */}
-      <div ref={containerRef} className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
-        {iconStates.length === floatingIcons.length &&
-          iconStates.map((state, i) => (
-            <FloatingIcon
-              key={i}
-              Icon={floatingIcons[i].icon}
-              x={state.x}
-              y={state.y}
-              color={floatingIcons[i].color}
-              size={floatingIcons[i].size}
-            />
-          ))}
-      </div>
-      
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none select-none z-0">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-gradient-to-r from-purple-600/30 to-fuchsia-600/30 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-gradient-to-r from-fuchsia-600/30 to-purple-600/30 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 sm:w-80 sm:h-80 md:w-[600px] md:h-[600px] bg-gradient-to-r from-purple-500/10 to-fuchsia-500/10 rounded-full blur-3xl animate-float" />
+    <section ref={heroRef} className="min-h-screen w-full flex flex-col md:flex-row relative bg-black overflow-hidden">
+
+      {/* Fixed Header Row */}
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 sm:px-10 sm:py-8 md:px-12 md:py-8 pointer-events-none">
+        {/* Brand Name */}
+        <div className="hero-left-fade-stagger opacity-0 pointer-events-auto">
+          <a
+            href="#"
+            onClick={(e) => handleNavClick(e, '#')}
+            className="font-garamond text-3xl font-bold tracking-tight text-white hover:opacity-100 transition-opacity group"
+          >
+            <span>{menuData.brandFirst}</span>
+            <span className="text-zinc-500 group-hover:text-white transition-colors duration-300 inline-block group-hover:translate-x-0.5 transform duration-300">
+              {menuData.brandLast}
+            </span>
+          </a>
+        </div>
+
+        {/* Hamburger */}
+        <div className="hero-right-fade-stagger opacity-0 pointer-events-auto">
+          <div
+            className="flex flex-col gap-1.5 cursor-pointer group"
+            onClick={() => setIsMenuOpen(true)}
+            title="Open Menu"
+          >
+            <span className="w-6 h-[1.5px] bg-white transition-all duration-300 group-hover:w-4" />
+            <span className="w-6 h-[1.5px] bg-white transition-all duration-300 group-hover:w-5" />
+          </div>
+        </div>
       </div>
 
-      <div className="container-width section-padding content-spacing flex flex-col items-center justify-center relative z-10">
-        <div className={`w-full max-w-3xl mx-auto flex flex-col items-center justify-center text-center space-y-3 sm:space-y-6 md:space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}> 
-          <div className="flex items-center justify-center space-x-2 md:space-x-3 mb-2 sm:mb-4">
-            <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
-            <div className="flex items-center space-x-2">
-              <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-purple-400 animate-pulse" />
-              <span className="text-purple-300 font-medium text-xs sm:text-sm md:text-lg">Hello, I'm</span>
+      {/* LEFT COLUMN */}
+      <div
+        className="w-full md:w-2/5 pt-16 md:pt-0 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-zinc-900 md:pb-[128px]"
+        style={{
+          backgroundColor: '#0c0c0e',
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }}
+      >
+        <SecurityLogsBackground />
+
+        {/* Profile card */}
+        <div
+          ref={cardContainerRef}
+          className="hero-left-fade-stagger opacity-0 relative z-10 flex-1 min-h-[400px] md:min-h-[480px] w-full flex items-center md:items-start justify-center p-6 group"
+        >
+          <div
+            style={imageOffset !== null ? { marginTop: `${imageOffset}px` } : undefined}
+            className="bg-white text-black p-4 sm:p-5 w-[280px] sm:w-[320px] shadow-2xl border border-zinc-200 flex flex-col rounded-sm transition-transform duration-500 hover:scale-[1.02]"
+          >
+            <div className="relative w-full aspect-[4/5] overflow-hidden bg-zinc-100 border border-zinc-200/60 mb-4 rounded-sm">
+              <img
+                src={landingData.profilePicUrl}
+                alt={`${landingData.heroName} Portrait`}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="w-6 sm:w-8 md:w-16 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500" />
+            <div className="flex flex-col gap-3">
+              <div className="flex justify-center text-[10px] sm:text-xs">
+                <span className="tracking-[0.15em] font-medium uppercase font-inter text-zinc-500">
+                  {landingData.heroRole}
+                </span>
+              </div>
+            </div>
           </div>
-          {/* Highlighted Name */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-2 sm:mb-4 text-center">
-            <span className="text-pink-400 drop-shadow-lg" style={{fontSize: 'clamp(1.5rem,6vw,5rem)'}}>
-              Ashikul Bari Chowdhury
-            </span>
-          </h1>
-          <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4 text-white tracking-wide drop-shadow-sm text-center">
-            ASP.NET Developer & Project Manager
-          </h2>
-          <div className="flex justify-center items-center mt-2 sm:mt-4 mb-2 sm:mb-4">
-            <span className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-fuchsia-500/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-md border border-purple-400/20 text-purple-200 font-medium text-xs sm:text-sm animate-fade-in-up">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-4 sm:w-4 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0c-3.866 0-7 1.79-7 4v2h14v-2c0-2.21-3.134-4-7-4z" />
-              </svg>
-              <span>Dhaka, Bangladesh</span>
-            </span>
-          </div>
-          <p className="text-sm sm:text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mt-2 mb-6 sm:mb-10 text-center px-4">
-            Fresh ASP.NET developer building scalable web API using EF Core and PostgreSQL while integrating core values to the team for goal based delivery.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center mb-20 sm:mb-32 px-4">
-            <button 
-              onClick={scrollToProjects}
-              className="btn-primary btn-interactive group w-full sm:w-auto"
-              aria-label="View my development projects and portfolio"
+        </div>
+
+        {/* Accordion widgets */}
+        <div className="hero-left-fade-stagger opacity-0 w-full bg-black border-t border-zinc-800 md:absolute md:bottom-0 md:left-0 md:z-20">
+
+          {/* Certifications */}
+          <div className="w-full">
+            <button
+              onClick={() => toggleAccordion('certifications')}
+              className="w-full border-b border-zinc-800 py-5.5 px-6 sm:px-8 flex justify-between items-center text-left text-white hover:bg-zinc-900/40 transition-colors focus:outline-none"
+              aria-expanded={activeAccordion === 'certifications'}
             >
-              <span className="flex items-center justify-center space-x-2">
-                <span>View My Work</span>
-                <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              <span className="text-xs sm:text-sm uppercase tracking-widest font-mono text-zinc-300">
+                Certifications &amp; Achievements
               </span>
+              {activeAccordion === 'certifications' ? (
+                <Minus className="h-4 w-4 text-zinc-400" />
+              ) : (
+                <Plus className="h-4 w-4 text-zinc-400" />
+              )}
             </button>
-            <button 
-              onClick={downloadCV}
-              className="btn-secondary btn-interactive group w-full sm:w-auto"
-              aria-label="Download Ashikul Bari Chowdhury's CV/Resume"
+            <div
+              ref={certsContentRef}
+              className="overflow-hidden bg-zinc-950/80"
+              style={{ height: 0, opacity: 0 }}
             >
-              <span className="flex items-center justify-center space-x-2">
-                <Download className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-y-1 transition-transform duration-300" />
-                <span>Download CV</span>
-              </span>
-            </button>
+              <div className="px-6 sm:px-8 py-5 text-zinc-400 text-xs sm:text-sm leading-relaxed space-y-2.5 font-mono border-b border-zinc-800">
+                {landingData.certifications?.map((cert, index) => (
+                  <p key={index} className="cert-item flex items-start gap-2 opacity-0">
+                    <span className="text-zinc-500 font-mono">&#91;{String(index + 1).padStart(2, '0')}&#93;</span>
+                    <span><strong>{cert}</strong></span>
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
-          {/* Enhanced Scroll Indicator - now relative to hero section, not fixed to viewport */}
-          <div className="w-full flex flex-col items-center justify-center mt-20 sm:mt-40 animate-bounce">
-            <span className="text-xs md:text-sm font-medium text-slate-400">Scroll to explore</span>
-            <div className="p-2 md:p-3 rounded-full border border-purple-400/30 bg-purple-900/20 backdrop-blur-sm mt-2">
-              <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-purple-400" />
+
+          {/* Skills */}
+          <div className="w-full">
+            <button
+              onClick={() => toggleAccordion('skills')}
+              className="w-full border-b border-zinc-800 py-5.5 px-6 sm:px-8 flex justify-between items-center text-left text-white hover:bg-zinc-900/40 transition-colors focus:outline-none"
+              aria-expanded={activeAccordion === 'skills'}
+            >
+              <span className="text-xs sm:text-sm uppercase tracking-widest font-mono text-zinc-300">
+                Core Skills
+              </span>
+              {activeAccordion === 'skills' ? (
+                <Minus className="h-4 w-4 text-zinc-400" />
+              ) : (
+                <Plus className="h-4 w-4 text-zinc-400" />
+              )}
+            </button>
+            <div
+              ref={skillsContentRef}
+              className="overflow-hidden bg-zinc-950/80"
+              style={{ height: 0, opacity: 0 }}
+            >
+              <div className="px-6 sm:px-8 py-5 text-zinc-400 text-xs sm:text-sm leading-relaxed font-mono border-b border-zinc-800">
+                <div className="flex flex-wrap gap-2">
+                  {landingData.skills?.map((tech) => (
+                    <span
+                      key={tech}
+                      className="skill-badge px-2.5 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-sm opacity-0 inline-block"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  )
-}
 
-export default Hero
+      {/* RIGHT COLUMN */}
+      <div
+        ref={rightColRef}
+        onMouseMove={handleMouseMove}
+        onTouchMove={handleTouchMove}
+        className="w-full md:w-3/5 bg-black text-white px-6 py-10 sm:px-10 sm:py-12 md:py-20 md:px-16 flex flex-col justify-between min-h-screen md:min-h-0 relative transition-all duration-300"
+        style={{
+          background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.045), transparent 85%)`,
+          backgroundColor: '#000000',
+        }}
+      >
+        {/* Editorial copy */}
+        <div className="hero-right-fade-stagger opacity-0 my-auto flex flex-col space-y-6 sm:space-y-8 max-w-xl text-right items-end ml-auto w-full py-8 md:py-12 relative z-10">
+          <h2
+            ref={textRef}
+            className="text-3xl sm:text-4xl lg:text-5xl font-garamond text-white font-medium tracking-tight mb-2 sm:mb-4 hover:tracking-wide transition-all duration-700 select-none cursor-default"
+          >
+            {landingData.heroName}
+          </h2>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-garamond text-zinc-400 leading-[1.25] font-light tracking-tight hover:text-zinc-200 transition-colors duration-500 select-none cursor-default">
+            {landingData.heroSubtitle}
+          </h1>
+          <div className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-zinc-500 font-mono select-none cursor-default">
+            {landingData.heroLocation}
+          </div>
+        </div>
+
+        {/* Action buttons */}
+        <div className="hero-right-fade-stagger opacity-0 flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 justify-end w-full pb-8 md:pb-12 relative z-10">
+          <button
+            onClick={scrollToProjects}
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-zinc-400 hover:text-white transition-colors border-b border-zinc-800 hover:border-white pb-1 font-mono cursor-pointer group"
+          >
+            <span>View My Work</span>
+            <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+          </button>
+          <button
+            onClick={downloadCV}
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-zinc-400 hover:text-white transition-colors border-b border-zinc-800 hover:border-white pb-1 font-mono cursor-pointer group"
+          >
+            <span>Download CV</span>
+            <Download className="h-3 w-3 group-hover:translate-y-0.5 transition-transform duration-300" />
+          </button>
+        </div>
+      </div>
+
+      {/* Full-screen nav overlay */}
+      <NavMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        menuData={menuData}
+        onNavClick={handleNavClick}
+      />
+
+    </section>
+  );
+};
+
+export default Hero;

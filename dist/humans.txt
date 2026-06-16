@@ -1,0 +1,28 @@
+/* TEAM */
+Name: Ashikul Bari Chowdhury
+Role: Cyber Security Analyst & GRC Specialist
+Location: Melbourne, Victoria, Australia
+Email: ashikul.chowdhury@proton.me
+LinkedIn: https://linkedin.com/in/ashikulbarichy
+GitHub: https://github.com/ashikulbarichy
+From: Dhaka, Bangladesh
+
+/* EDUCATION */
+Master of Cyber Security — La Trobe University, Melbourne (2026–2028)
+B.Sc. Computer Science & Engineering — North South University, Dhaka (2020–2025)
+
+/* CERTIFICATIONS */
+Google Cybersecurity Fundamentals Certificate
+Tiny R&D Project Manager Bootcamp Certificate
+
+/* SKILLS */
+Cyber Security: GRC, SOC Operations, Threat Intelligence, Digital Forensics, Network Security, NIST, ISO 27001, Risk Assessment, Vulnerability Assessment
+Development: Python, C#, ASP.NET Core, React, TypeScript, Angular, PostgreSQL, MongoDB, Node.js
+Tools: Git, Agile/Scrum, CI/CD, Docker
+
+/* SITE */
+Language: English
+Standards: HTML5, CSS3, TypeScript
+Components: React, Vite, Tailwind CSS
+Backend CMS: Sanity.io
+Last update: 2026-06-15
