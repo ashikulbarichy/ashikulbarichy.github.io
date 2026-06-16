@@ -16,7 +16,7 @@ const DEFAULT_IMAGE = `${BASE_URL}/img/profile_image.webp`;
 
 const SEOHead = ({
   title = 'Ashikul Bari Chowdhury | Cyber Security Analyst & GRC Specialist | Melbourne, Australia',
-  description = 'Cyber Security Analyst and GRC Specialist pursuing a Master of Cyber Security at La Trobe University, Melbourne, Australia. Seeking GRC Analyst, SOC Analyst, and Cybersecurity roles in Melbourne and across Australia. Expert in Python, ASP.NET Core, React, and risk frameworks.',
+  description = 'Cyber Security Analyst and GRC Specialist. Open to SOC, GRC, and cybersecurity roles. Expert in risk frameworks, Python, and full-stack development.',
   keywords = 'Ashikul Bari Chowdhury, cyber security analyst Melbourne, GRC specialist Australia, governance risk compliance Melbourne, La Trobe University cyber security, SOC analyst Melbourne, information security analyst Victoria, risk analyst Australia, compliance analyst Melbourne, cybersecurity graduate Melbourne, Python developer, ASP.NET developer, full stack developer, project manager, software engineer, Dhaka Bangladesh',
   image = DEFAULT_IMAGE,
   url,

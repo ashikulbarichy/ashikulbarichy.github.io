@@ -43,7 +43,18 @@ const About = () => {
             onUpdate: (self) => {
               const progress = self.progress || 0;
               const count = disciplines.length;
-              const index = Math.min(Math.floor(progress * count) + 1, count);
+              if (count <= 1) {
+                setActiveCardIndex(1);
+                return;
+              }
+              let index = count;
+              for (let i = 0; i < count - 1; i++) {
+                const midpoint = (2 * i + 1) / (2 * (count - 1));
+                if (progress < midpoint) {
+                  index = i + 1;
+                  break;
+                }
+              }
               setActiveCardIndex(index);
             }
           }
@@ -60,7 +71,8 @@ const About = () => {
         disciplines.forEach((_, idx) => {
           if (idx === disciplines.length - 1) return;
           
-          const startTime = (idx + 1) * (10 / disciplines.length) - 0.5;
+          const midpointTime = 10 * (2 * idx + 1) / (2 * (disciplines.length - 1));
+          const startTime = midpointTime - 0.5;
 
           // Transition current card out (fade/slide up)
           tl.to(`.card-content-${idx + 1}`, {
