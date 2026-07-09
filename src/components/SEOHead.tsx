@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getSiteSettings, SiteSettings, defaultSiteSettings } from '../data/landing-page';
 
 interface SEOHeadProps {
   title?: string;
@@ -15,16 +16,31 @@ const BASE_URL = 'https://ashikulbari.com';
 const DEFAULT_IMAGE = `${BASE_URL}/img/profile_image.webp`;
 
 const SEOHead = ({
-  title = 'Ashikul Bari Chowdhury | Cyber Security Analyst & GRC Specialist | Melbourne, Australia',
-  description = 'Cyber Security Analyst and GRC Specialist. Open to SOC, GRC, and cybersecurity roles. Expert in risk frameworks, Python, and full-stack development.',
-  keywords = 'Ashikul Bari Chowdhury, cyber security analyst Melbourne, GRC specialist Australia, governance risk compliance Melbourne, La Trobe University cyber security, SOC analyst Melbourne, information security analyst Victoria, risk analyst Australia, compliance analyst Melbourne, cybersecurity graduate Melbourne, Python developer, ASP.NET developer, full stack developer, project manager, software engineer, Dhaka Bangladesh',
-  image = DEFAULT_IMAGE,
+  title,
+  description,
+  keywords,
+  image,
   url,
   type = 'profile',
   structuredData = null,
 }: SEOHeadProps) => {
   const location = useLocation();
   const currentUrl = url || `${BASE_URL}${location.pathname}`;
+
+  const [siteSettings, setSiteSettings] = useState<SiteSettings>(defaultSiteSettings);
+
+  useEffect(() => {
+    let isMounted = true;
+    getSiteSettings().then(data => {
+      if (isMounted) setSiteSettings(data);
+    });
+    return () => { isMounted = false; };
+  }, []);
+
+  const activeTitle = title || siteSettings.seoTitle;
+  const activeDescription = description || siteSettings.seoDescription;
+  const activeKeywords = keywords || siteSettings.seoKeywords;
+  const activeImage = image || siteSettings.ogImageUrl || DEFAULT_IMAGE;
 
   useEffect(() => {
     // ── Title ────────────────────────────────────────────────
@@ -72,20 +88,20 @@ const SEOHead = ({
     };
 
     // ── Basic Meta ───────────────────────────────────────────
-    setMeta('meta[name="description"]', description);
-    setMeta('meta[name="keywords"]', keywords);
+    setMeta('meta[name="description"]', activeDescription);
+    setMeta('meta[name="keywords"]', activeKeywords);
 
     // ── Open Graph ───────────────────────────────────────────
     setMeta('meta[property="og:type"]', type);
-    setMeta('meta[property="og:title"]', title);
-    setMeta('meta[property="og:description"]', description);
-    setMeta('meta[property="og:image"]', image);
+    setMeta('meta[property="og:title"]', activeTitle);
+    setMeta('meta[property="og:description"]', activeDescription);
+    setMeta('meta[property="og:image"]', activeImage);
     setMeta('meta[property="og:url"]', currentUrl);
 
     // ── Twitter ──────────────────────────────────────────────
-    setMeta('meta[property="twitter:title"]', title);
-    setMeta('meta[property="twitter:description"]', description);
-    setMeta('meta[property="twitter:image"]', image);
+    setMeta('meta[property="twitter:title"]', activeTitle);
+    setMeta('meta[property="twitter:description"]', activeDescription);
+    setMeta('meta[property="twitter:image"]', activeImage);
     setMeta('meta[property="twitter:url"]', currentUrl);
 
     // ── Canonical ────────────────────────────────────────────
@@ -96,7 +112,7 @@ const SEOHead = ({
       setJsonLd('page-specific', structuredData);
     }
 
-  }, [title, description, keywords, image, currentUrl, type, structuredData]);
+  }, [activeTitle, activeDescription, activeKeywords, activeImage, currentUrl, type, structuredData]);
 
   return null;
 };

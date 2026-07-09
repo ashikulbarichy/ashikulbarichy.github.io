@@ -1,6 +1,6 @@
 # ═══════════════════════════════════════════════════════════════
 # robots.txt — ashikulbari.com
-# Ashikul Bari Chowdhury | Cyber Security Analyst | Melbourne
+# Ashikul Bari Chowdhury | Cyber Security Analyst | Dhaka
 # Last updated: 2026-06-15
 # ═══════════════════════════════════════════════════════════════
 

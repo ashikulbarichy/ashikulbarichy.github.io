@@ -1,14 +1,14 @@
 /* TEAM */
 Name: Ashikul Bari Chowdhury
 Role: Cyber Security Analyst & GRC Specialist
-Location: Melbourne, Victoria, Australia
+Location: Dhaka, Bangladesh
 Email: ashikul.chowdhury@proton.me
 LinkedIn: https://linkedin.com/in/ashikulbarichy
 GitHub: https://github.com/ashikulbarichy
 From: Dhaka, Bangladesh
 
 /* EDUCATION */
-Master of Cyber Security — La Trobe University, Melbourne (2026–2028)
+Master of Cyber Security — Dhaka, Bangladesh, Dhaka (2026–2028)
 B.Sc. Computer Science & Engineering — North South University, Dhaka (2020–2025)
 
 /* CERTIFICATIONS */

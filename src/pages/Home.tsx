@@ -9,7 +9,7 @@ const homeStructuredData = {
   '@type': 'WebPage',
   '@id': 'https://ashikulbari.com/#webpage',
   'url': 'https://ashikulbari.com/',
-  'name': 'Ashikul Bari Chowdhury | Cyber Security Analyst & GRC Specialist | Melbourne, Australia',
+  'name': 'Ashikul Bari Chowdhury | Cyber Security Analyst & GRC Specialist | Dhaka, Bangladesh',
   'description': 'Cyber Security Analyst and GRC Specialist. Open to SOC, GRC, and cybersecurity roles. Expert in risk frameworks, Python, and full-stack development.',
   'inLanguage': 'en-AU',
   'isPartOf': {
@@ -36,9 +36,6 @@ export default function Home() {
   return (
     <>
       <SEOHead
-        title="Ashikul Bari Chowdhury | Cyber Security Analyst & GRC Specialist | Melbourne, Australia"
-        description="Cyber Security Analyst and GRC Specialist. Open to SOC, GRC, and cybersecurity roles. Expert in risk frameworks, Python, and full-stack development."
-        keywords="Ashikul Bari Chowdhury, cyber security analyst Melbourne, GRC specialist Australia, governance risk compliance Melbourne, La Trobe University cyber security, SOC analyst Melbourne, cybersecurity graduate Australia, information security analyst Victoria, risk analyst Melbourne, compliance analyst Australia, Python developer Melbourne, ASP.NET developer, full stack developer, project manager, software engineer, North South University, Reevolt COO, Dhaka Bangladesh developer"
         url="https://ashikulbari.com/"
         type="profile"
         structuredData={homeStructuredData}

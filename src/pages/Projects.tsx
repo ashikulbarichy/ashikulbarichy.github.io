@@ -7,8 +7,8 @@ const projectsStructuredData = {
   '@type': 'CollectionPage',
   '@id': 'https://ashikulbari.com/projects#webpage',
   'url': 'https://ashikulbari.com/projects',
-  'name': 'Projects — Ashikul Bari Chowdhury | Melbourne Developer Portfolio',
-  'description': "A collection of full-stack web development, cyber security, and data engineering projects by Ashikul Bari Chowdhury — Cyber Security Analyst and GRC Specialist based in Melbourne, Australia. Projects built with React, ASP.NET Core, Python, PostgreSQL, and more.",
+  'name': 'Projects — Ashikul Bari Chowdhury | Dhaka Developer Portfolio',
+  'description': "A collection of full-stack web development, cyber security, and data engineering projects by Ashikul Bari Chowdhury — Cyber Security Analyst and GRC Specialist based in Dhaka, Bangladesh. Projects built with React, ASP.NET Core, Python, PostgreSQL, and more.",
   'inLanguage': 'en-AU',
   'isPartOf': {
     '@id': 'https://ashikulbari.com/#website'
@@ -35,9 +35,9 @@ export default function Projects() {
   return (
     <>
       <SEOHead
-        title="Projects — Ashikul Bari Chowdhury | Cyber Security & Full Stack Portfolio | Melbourne"
-        description="Explore the full project portfolio of Ashikul Bari Chowdhury — Cyber Security Analyst and GRC Specialist based in Melbourne, Australia. Includes edTech platforms, healthcare research systems, financial dashboards, security automation tools, and enterprise web applications built with React, ASP.NET Core, Python, and PostgreSQL."
-        keywords="Ashikul Bari projects, Ashikul Bari Chowdhury portfolio, cyber security projects Melbourne, GRC projects Australia, backend developer portfolio Melbourne, React projects, ASP.NET Core projects, Python security tools, edTech platform, healthcare software, financial dashboard, enterprise web applications, full stack developer portfolio Melbourne, security automation Python, web development portfolio Australia"
+        title="Projects — Ashikul Bari Chowdhury | Cyber Security & Full Stack Portfolio | Dhaka"
+        description="Explore the full project portfolio of Ashikul Bari Chowdhury — Cyber Security Analyst and GRC Specialist based in Dhaka, Bangladesh. Includes edTech platforms, healthcare research systems, financial dashboards, security automation tools, and enterprise web applications built with React, ASP.NET Core, Python, and PostgreSQL."
+        keywords="Ashikul Bari projects, Ashikul Bari Chowdhury portfolio, cyber security projects Dhaka, GRC projects Bangladesh, backend developer portfolio Dhaka, React projects, ASP.NET Core projects, Python security tools, edTech platform, healthcare software, financial dashboard, enterprise web applications, full stack developer portfolio Dhaka, security automation Python, web development portfolio Bangladesh"
         url="https://ashikulbari.com/projects"
         type="website"
         structuredData={projectsStructuredData}

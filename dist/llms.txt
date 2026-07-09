@@ -1,14 +1,14 @@
 # Ashikul Bari Chowdhury — Portfolio
 
-> Cyber Security Analyst and GRC Specialist | Melbourne, Victoria, Australia
+> Cyber Security Analyst and GRC Specialist | Dhaka, Bangladesh
 
 ## About
 
-Ashikul Bari Chowdhury is a Cyber Security Analyst and GRC (Governance, Risk, and Compliance) Specialist currently pursuing a **Master of Cyber Security at La Trobe University**, Melbourne, Victoria, Australia (2026–2028).
+Ashikul Bari Chowdhury is a Cyber Security Analyst and GRC (Governance, Risk, and Compliance) Specialist currently pursuing a **Master of Cyber Security at Dhaka, Bangladesh**, Dhaka, Bangladesh (2026–2028).
 
 He holds a B.Sc. in Computer Science & Engineering from North South University, Dhaka, Bangladesh (2020–2025) and serves as **Chief Operating Officer (COO) at Reevolt**, where he directs strategic operations, manages project deliverables, and leads cross-functional development teams.
 
-He is **actively seeking GRC Analyst, SOC Analyst, Information Security Analyst, Compliance Analyst, and Cybersecurity Graduate roles** in Melbourne, Victoria, and across Australia — including remote and hybrid positions.
+He is **actively seeking GRC Analyst, SOC Analyst, Information Security Analyst, Compliance Analyst, and Cybersecurity Graduate roles** in Dhaka, Bangladesh, and across Bangladesh — including remote and hybrid positions.
 
 ## Contact
 
@@ -16,7 +16,7 @@ He is **actively seeking GRC Analyst, SOC Analyst, Information Security Analyst,
 - **Website:** https://ashikulbari.com
 - **LinkedIn:** https://linkedin.com/in/ashikulbarichy
 - **GitHub:** https://github.com/ashikulbarichy
-- **Location:** Melbourne, Victoria, Australia (La Trobe University) — originally from Dhaka, Bangladesh
+- **Location:** Dhaka, Bangladesh (Dhaka, Bangladesh) — originally from Dhaka, Bangladesh
 
 ## Skills & Expertise
 
@@ -50,7 +50,7 @@ He is **actively seeking GRC Analyst, SOC Analyst, Information Security Analyst,
 
 | Degree | Institution | Location | Period |
 |--------|-------------|----------|--------|
-| Master of Cyber Security | La Trobe University | Melbourne, VIC, Australia | 2026–2028 |
+| Master of Cyber Security | Dhaka, Bangladesh | Dhaka, Bangladesh | 2026–2028 |
 | B.Sc. Computer Science & Engineering | North South University | Dhaka, Bangladesh | 2020–2025 |
 
 ## Certifications
@@ -78,14 +78,14 @@ Full portfolio of projects available at https://ashikulbari.com/projects — inc
 ## Availability
 
 **Open to:**
-- GRC Analyst roles — Melbourne, Australia
-- SOC Analyst / Security Analyst roles — Melbourne, Australia
-- Information Security Analyst roles — Victoria, Australia
-- Compliance Analyst roles — Australia (remote/hybrid)
-- Cybersecurity Graduate programmes — Australia
-- Full Stack Developer roles — Remote / Melbourne
-- Project Manager roles — Melbourne, Australia
+- GRC Analyst roles — Dhaka, Bangladesh
+- SOC Analyst / Security Analyst roles — Dhaka, Bangladesh
+- Information Security Analyst roles — Dhaka, Bangladesh
+- Compliance Analyst roles — Bangladesh (remote/hybrid)
+- Cybersecurity Graduate programmes — Bangladesh
+- Full Stack Developer roles — Remote / Dhaka
+- Project Manager roles — Dhaka, Bangladesh
 
 ## Keywords for AI Search
 
-Ashikul Bari Chowdhury, cyber security analyst Melbourne, GRC specialist Australia, governance risk compliance Melbourne, La Trobe University cyber security student, SOC analyst Melbourne, information security analyst Victoria, risk analyst Australia, compliance analyst Melbourne, cybersecurity graduate Melbourne, ASP.NET developer, Python security developer, full stack developer Melbourne, project manager Melbourne, software engineer Bangladesh, Reevolt COO, North South University graduate
+Ashikul Bari Chowdhury, cyber security analyst Dhaka, GRC specialist Bangladesh, governance risk compliance Dhaka, cyber security Dhaka student, SOC analyst Dhaka, information security analyst Dhaka, risk analyst Bangladesh, compliance analyst Dhaka, cybersecurity graduate Dhaka, ASP.NET developer, Python security developer, full stack developer Dhaka, project manager Dhaka, software engineer Bangladesh, Reevolt COO, North South University graduate

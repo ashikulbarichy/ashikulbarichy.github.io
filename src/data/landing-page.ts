@@ -40,6 +40,20 @@ export interface AboutSlide {
   logoUrl?: string
 }
 
+export interface SiteSettings {
+  seoTitle: string
+  seoDescription: string
+  seoKeywords: string
+  ogImageUrl: string
+}
+
+export const defaultSiteSettings: SiteSettings = {
+  seoTitle: 'Ashikul Bari Chowdhury | Cyber Security Analyst & GRC Specialist | Dhaka, Bangladesh',
+  seoDescription: 'Cyber Security Analyst and GRC Specialist. Open to SOC, GRC, and cybersecurity roles. Expert in risk frameworks, Python, and full-stack development.',
+  seoKeywords: 'Ashikul Bari Chowdhury, cyber security analyst Dhaka, GRC specialist Bangladesh, governance risk compliance Dhaka, cyber security Dhaka, SOC analyst Dhaka, information security analyst Dhaka, risk analyst Bangladesh, compliance analyst Dhaka, cybersecurity graduate Dhaka, Python developer, ASP.NET developer, full stack developer, project manager, software engineer, Dhaka Bangladesh',
+  ogImageUrl: 'https://ashikulbari.com/img/profile_image.webp'
+}
+
 
 export const defaultLandingData: LandingPageData = {
   heroName: 'Ashikul Bari Chowdhury',
@@ -149,6 +163,35 @@ export async function getMenuData(): Promise<MenuData> {
   return defaultMenuData
 }
 
+export async function getSiteSettings(): Promise<SiteSettings> {
+  if (isSanityConfigured && client) {
+    try {
+      const query = `*[_type == "siteSettings"][0] {
+        seoTitle,
+        seoDescription,
+        seoKeywords,
+        ogImage
+      }`
+      const sanityData = await client.fetch<any>(query)
+      if (sanityData) {
+        const { urlFor } = await import('../lib/sanity')
+        return {
+          seoTitle: sanityData.seoTitle || defaultSiteSettings.seoTitle,
+          seoDescription: sanityData.seoDescription || defaultSiteSettings.seoDescription,
+          seoKeywords: sanityData.seoKeywords || defaultSiteSettings.seoKeywords,
+          ogImageUrl:
+            (sanityData.ogImage && typeof sanityData.ogImage === 'object'
+              ? urlFor(sanityData.ogImage)
+              : null) || defaultSiteSettings.ogImageUrl,
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching site settings from Sanity, falling back to defaults:', error)
+    }
+  }
+  return defaultSiteSettings
+}
+
 export const defaultAboutSlides: AboutSlide[] = [
   {
     id: '01',
@@ -164,8 +207,8 @@ export const defaultAboutSlides: AboutSlide[] = [
     id: '02',
     tag: 'Education / M.Sc.',
     outlineText: 'SECURITY',
-    title: 'Pursuing Masters at La Trobe University',
-    description: 'Currently pursuing my Master of Cyber Security at La Trobe University, focusing on advanced network security, digital forensics, and threat intelligence architectures.',
+    title: 'Pursuing Masters at Dhaka, Bangladesh',
+    description: 'Currently pursuing my Master of Cyber Security at Dhaka, Bangladesh, focusing on advanced network security, digital forensics, and threat intelligence architectures.',
     timelinePoints: ['2026', '2027', '2028'],
     order: 2,
     logoUrl: '/img/latrobe_logo.png'
