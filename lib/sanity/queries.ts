@@ -43,8 +43,21 @@ export const TAGS = {
   uiText: 'uiText',
 } as const
 
-/** Anything not explicitly revalidated still refreshes at least this often. */
-const REVALIDATE_SECONDS = 3600
+/**
+ * Backstop revalidation window.
+ *
+ * The webhook is the fast path — it invalidates by tag within seconds of a
+ * publish. This is what happens when the webhook is not configured, or its
+ * delivery failed: content still refreshes, just on a timer.
+ *
+ * Originally 3600 (one hour), which was far too long. Publishing in the Studio
+ * and seeing nothing change for an hour reads as "the site is broken", and the
+ * cost of a shorter window is negligible here: reads go through Sanity's CDN,
+ * this is a low-traffic portfolio, and one query per minute per cached entry
+ * is nothing. 60s means the site is never meaningfully stale even with the
+ * webhook switched off entirely.
+ */
+const REVALIDATE_SECONDS = 30
 
 function cached<T>(
   fn: () => Promise<T>,
@@ -71,7 +84,19 @@ export const getIdentity = cached(
     if (!client) return defaultIdentity
     try {
       const d = await client.fetch<Record<string, any> | null>(IDENTITY_QUERY)
-      if (!d) return defaultIdentity
+      if (!d) {
+        console.warn(
+          '[sanity] no `identity` document — serving the code fallback. Run: node scripts/seed-seo.mjs'
+        )
+        return defaultIdentity
+      }
+      const gaps = identityGaps(d)
+      if (gaps.length) {
+        console.warn(
+          `[sanity] identity is incomplete, these fall back to code defaults: ${gaps.join(', ')}. ` +
+            'Mixing live and fallback values can make the Person schema self-contradictory.'
+        )
+      }
       return {
         fullName: d.fullName || defaultIdentity.fullName,
         givenName: d.givenName || defaultIdentity.givenName,
@@ -109,6 +134,38 @@ export const getIdentity = cached(
   ['identity'],
   [TAGS.identity]
 )
+
+/**
+ * Which Identity fields are empty and therefore falling back to code.
+ *
+ * A partially-filled document is the worst case, not a harmless one: it mixes
+ * live values with defaults, so the Person JSON-LD can end up with a `name`
+ * from Sanity and a `description` from the fallback that spell the name
+ * differently. That is precisely the contradiction the whole identity model
+ * exists to avoid.
+ *
+ * Reported by /api/sam/diag and logged on a cache miss.
+ */
+export function identityGaps(d: Record<string, unknown> | null): string[] {
+  if (!d) return ['document missing entirely']
+  const gaps: string[] = []
+  const str = (k: string) => typeof d[k] === 'string' && (d[k] as string).trim().length > 0
+  const arr = (k: string) => Array.isArray(d[k]) && (d[k] as unknown[]).length > 0
+
+  if (!str('fullName')) gaps.push('fullName')
+  else if (!(d.fullName as string).trim().includes(' ')) gaps.push('fullName (looks like a first name only)')
+  if (!str('bio')) gaps.push('bio')
+  if (!str('headline')) gaps.push('headline')
+  if (!str('locality')) gaps.push('locality')
+  if (!str('countryName')) gaps.push('countryName')
+  if (!str('countryCode')) gaps.push('countryCode')
+  if (!str('email')) gaps.push('email')
+  if (!arr('jobTitles')) gaps.push('jobTitles')
+  if (!arr('knowsAbout')) gaps.push('knowsAbout')
+  if (!arr('sameAs')) gaps.push('sameAs')
+  if (!arr('education')) gaps.push('education')
+  return gaps
+}
 
 // ─────────────────────────────────────────────────────────────
 // Site settings

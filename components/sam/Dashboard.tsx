@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { SamStats, Breakdown } from '@/lib/sam/stats'
 import { useLiveStats, type LiveStatus } from './useLiveStats'
 import LiveViewers from './LiveViewers'
+import CollectionHealth from './CollectionHealth'
 import SignOutButton from './SignOutButton'
 
 const RANGES: { days: number; label: string }[] = [
@@ -69,6 +70,8 @@ export default function Dashboard({
           </p>
         </div>
       )}
+
+      <CollectionHealth />
 
       <LiveViewers />
 

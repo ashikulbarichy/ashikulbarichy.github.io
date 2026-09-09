@@ -31,7 +31,7 @@ const nextConfig = {
         source: '/:path(llms.txt|humans.txt)',
         headers: [
           { key: 'Content-Type', value: 'text/plain; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=300' },
         ],
       },
     ]

@@ -12,6 +12,21 @@ import { buildMetadata } from '@/lib/seo/metadata'
 import { faqJsonLd, breadcrumbJsonLd, jsonLdScript } from '@/lib/seo/jsonld'
 
 /**
+ * ISR: re-render at most once every 60 seconds.
+ *
+ * Without this the route is fully static — Next bakes the HTML at build time
+ * and serves it from the Full Route Cache indefinitely, so a Sanity edit only
+ * appeared after a redeploy. The `revalidate` on the data functions in
+ * lib/sanity/queries.ts was not enough on its own: that governs the cached
+ * query result, not whether the page is ever rendered again.
+ *
+ * The webhook at /api/revalidate is still the fast path (seconds, by tag).
+ * This is the floor that guarantees freshness when the webhook is not
+ * configured or a delivery fails.
+ */
+export const revalidate = 60
+
+/**
  * /faq
  *
  * Moved off the homepage at the owner's request. It keeps its own URL rather

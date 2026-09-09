@@ -3,6 +3,21 @@ import { getIndexableProjects, getFaqs } from '@/lib/sanity/queries'
 import { SITE_URL } from '@/lib/seo/site'
 
 /**
+ * ISR: re-render at most once every 60 seconds.
+ *
+ * Without this the route is fully static — Next bakes the HTML at build time
+ * and serves it from the Full Route Cache indefinitely, so a Sanity edit only
+ * appeared after a redeploy. The `revalidate` on the data functions in
+ * lib/sanity/queries.ts was not enough on its own: that governs the cached
+ * query result, not whether the page is ever rendered again.
+ *
+ * The webhook at /api/revalidate is still the fast path (seconds, by tag).
+ * This is the floor that guarantees freshness when the webhook is not
+ * configured or a delivery fails.
+ */
+export const revalidate = 60
+
+/**
  * Sitemap, generated from Sanity on every request (then cached).
  *
  * Add a project in the Studio and it appears here automatically with a real

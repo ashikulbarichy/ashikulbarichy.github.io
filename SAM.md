@@ -178,6 +178,38 @@ The date inside the hash rotates it every 24 hours. That's the deliberate trade:
 
 ---
 
+## Troubleshooting
+
+### Live viewers shows 0 while I'm visiting from another tab
+
+Open `/api/sam/diag` while signed in. It reports whether collection is configured, how many rows exist, and what the last recorded event was — which distinguishes "nobody is visiting" from "collection is broken". The dashboard also shows a red banner when it detects the latter.
+
+The usual cause is `SUPABASE_SERVICE_ROLE_KEY` still holding the `your_service_role_key` placeholder. The collector then attempts every write, Supabase answers 401, and rows are dropped — so every panel shows a confident 0.
+
+Check the server logs for a line like:
+
+```
+[analytics] collection DISABLED: SUPABASE_SERVICE_ROLE_KEY is still the placeholder from .env.example
+```
+
+Other things to check, in order:
+
+1. **Restart after editing `.env.local`.** Next reads env vars at startup; editing the file under a running server changes nothing.
+2. **Same environment.** If the dashboard is on localhost and you're visiting production (or the reverse), they only share data if both point at the same Supabase project *and* both have a working service key.
+3. **Migrations run.** `/api/sam/diag` will say `Cannot read the tables` if `0001_analytics.sql` has not been applied.
+4. **Ad blockers.** Some block requests to paths containing "collect". Check the browser Network tab for a 204 from `/api/collect`; if the request is missing entirely, an extension ate it.
+5. **The 30-second window.** A viewer counts as live only while `last_seen_at` is within 30s. The beacon heartbeats every 15s while the tab is *visible* — a backgrounded tab stops heartbeating and drops off the list by design.
+
+### `EvalError: Code generation from strings disallowed` on `npm start`
+
+A mixed `.next` directory — dev-format middleware left behind by a `next dev` run, loaded by `next start`. Fix:
+
+```bash
+rm -rf .next && npm run build && npm start
+```
+
+Worth knowing because it only affects middleware, so the symptom is the server refusing to boot at all.
+
 ## Extending the dashboard
 
 The SQL functions already exist, so adding a panel means rendering another table:

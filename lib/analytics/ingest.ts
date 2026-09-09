@@ -15,7 +15,41 @@ import { SUPABASE_URL } from '@/lib/supabase/config'
 
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
 
-export const isIngestConfigured = Boolean(SUPABASE_URL && SERVICE_KEY)
+/**
+ * Why this is stricter than a truthiness check.
+ *
+ * The first version was `Boolean(SUPABASE_URL && SERVICE_KEY)`, which happily
+ * accepted the literal placeholder `your_service_role_key` copied out of
+ * .env.example. The collector then attempted every write, Supabase answered
+ * 401, and each row was dropped — so the dashboard showed a confident 0 with
+ * no indication that collection was broken at all.
+ *
+ * A Supabase service key is a JWT: three dot-separated base64url segments
+ * beginning `eyJ`. Checking the shape catches placeholders, truncated pastes,
+ * and the common mistake of pasting the project URL or the anon key's label.
+ */
+function looksLikeJwt(value: string): boolean {
+  const parts = value.split('.')
+  return parts.length === 3 && value.startsWith('eyJ') && parts.every((p) => p.length > 8)
+}
+
+export const ingestConfigError: string | null = (() => {
+  if (!SUPABASE_URL) return 'NEXT_PUBLIC_SUPABASE_URL is not set'
+  if (!SERVICE_KEY) return 'SUPABASE_SERVICE_ROLE_KEY is not set'
+  if (!looksLikeJwt(SERVICE_KEY)) {
+    return SERVICE_KEY.includes('your_') || SERVICE_KEY.length < 40
+      ? 'SUPABASE_SERVICE_ROLE_KEY is still the placeholder from .env.example'
+      : 'SUPABASE_SERVICE_ROLE_KEY does not look like a JWT (expected three dot-separated segments starting "eyJ")'
+  }
+  return null
+})()
+
+export const isIngestConfigured = ingestConfigError === null
+
+// Loud once at startup rather than silent per request.
+if (!isIngestConfigured) {
+  console.warn(`[analytics] collection DISABLED: ${ingestConfigError}`)
+}
 
 function headers(extra: Record<string, string> = {}) {
   return {
