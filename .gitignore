@@ -1,40 +1,145 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ============================================================================
+# Secrets — nothing in this block may ever be committed
+# ============================================================================
+# Every .env variant except the example. The negation must come AFTER the
+# broad patterns or it has no effect.
+.env
+.env.*
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+!.env.example
 
-# dependencies
-/node_modules
+# Keys, certificates, credential dumps
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+*.gpg
+*.asc
+secrets.*
+credentials.*
+service-account*.json
+*-service-account.json
+serviceAccountKey.json
+
+# Anything explicitly marked local/private
+*.local
+!*.local.example
+
+# ============================================================================
+# Dependencies
+# ============================================================================
+node_modules/
 /.pnp
 .pnp.js
+.pnp.cjs
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
+# ============================================================================
+# Build output
+# ============================================================================
+.next/
+out/
+build/
+# `dist/` was previously committed, and because Vite inlines VITE_* env vars
+# the bundle contained a live Sanity API token. Never track build output.
+dist/
 *.tsbuildinfo
 next-env.d.ts
 
-# my gitignores
+# ============================================================================
+# Hosting / tooling
+# ============================================================================
+.vercel
+.netlify
+
+# Supabase CLI scratch. NOTE: supabase/migrations/ is deliberately NOT ignored
+# — the schema belongs in version control. Only local runtime state is excluded.
+supabase/.branches/
+supabase/.temp/
+supabase/.env
+supabase/logs/
+
+# Sanity
+.sanity/
+# Artifact of `sanity schema extract`; regenerated on demand.
+schema.json
+
+# ============================================================================
+# Logs & diagnostics
+# ============================================================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+report.*.json
+
+# ============================================================================
+# Test & coverage
+# ============================================================================
+coverage/
+.nyc_output/
+*.lcov
+playwright-report/
+test-results/
+
+# ============================================================================
+# Caches
+# ============================================================================
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+.stylelintcache
+.swc/
+
+# ============================================================================
+# Editors & OS
+# ============================================================================
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================================================================
+# Project-specific
+# ============================================================================
 .bolt
 
+# Scratch space — keep experiments out of the repo
+/tmp/
+/scratch/
+*.bak
+*.orig
+*.rej
